@@ -1,0 +1,10 @@
+<mat-form-field class="date-form-field">
+  <input
+    [formControl]="formControl"
+    matInput
+    [matDatepicker]="picker"
+    [placeholder]="control?.label"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>

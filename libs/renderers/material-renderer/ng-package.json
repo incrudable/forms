@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/libs/renderers/material-renderer",
+  "whitelistedNonPeerDependencies": [
+    "."
+  ],
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

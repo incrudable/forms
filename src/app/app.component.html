@@ -1,9 +1,0 @@
-<app-control-list></app-control-list>
-<gridster id="canvas" [cdkDropListData]="dashboard" (cdkDropListDropped)="dropped($event)" cdkDropList [options]="options">
-  <gridster-item [item]="item" *ngFor="let item of dashboard">
-    <div class="gridster-item-content">
-      <span>{{item.data.displayName}}</span>
-    </div>
-  </gridster-item>
-</gridster>
-<app-control-details></app-control-details>

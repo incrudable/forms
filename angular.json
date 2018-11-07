@@ -1,137 +1,129 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
-    "grid-test": {
-      "root": "",
-      "sourceRoot": "src",
-      "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
+    "forms": {
+      "root": "libs/forms",
+      "sourceRoot": "libs/forms/src",
+      "projectType": "library",
+      "prefix": "incrudable",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "outputPath": "dist/grid-test",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "grid-test:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "grid-test:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "grid-test:build"
+            "tsConfig": "libs/forms/tsconfig.lib.json",
+            "project": "libs/forms/ng-package.json"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "main": "libs/forms/src/test.ts",
+            "tsConfig": "libs/forms/tsconfig.spec.json",
+            "karmaConfig": "libs/forms/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "libs/forms/tsconfig.lib.json",
+              "libs/forms/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
-      }
+      },
+      "schematics": {}
     },
-    "grid-test-e2e": {
-      "root": "e2e/",
-      "projectType": "application",
-      "prefix": "",
+    "material-deps": {
+      "root": "libs/material-deps",
+      "sourceRoot": "libs/material-deps/src",
+      "projectType": "library",
+      "prefix": "mat-deps",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "grid-test:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "grid-test:serve:production"
-            }
+            "tsConfig": "libs/material-deps/tsconfig.lib.json",
+            "project": "libs/material-deps/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/material-deps/src/test.ts",
+            "tsConfig": "libs/material-deps/tsconfig.spec.json",
+            "karmaConfig": "libs/material-deps/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "tsConfig": [
+              "libs/material-deps/tsconfig.lib.json",
+              "libs/material-deps/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      },
+      "schematics": {}
+    },
+    "forms-renderers-material-renderer": {
+      "projectType": "library",
+      "root": "libs/renderers/material-renderer",
+      "sourceRoot": "libs/renderers/material-renderer/src",
+      "prefix": "incrudable",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/renderers/material-renderer/tsconfig.lib.json",
+            "project": "libs/renderers/material-renderer/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/renderers/material-renderer/tsconfig.lib.json",
+              "libs/renderers/material-renderer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/renderers/material-renderer/jest.config.js",
+            "tsConfig": "libs/renderers/material-renderer/tsconfig.spec.json",
+            "setupFile": "libs/renderers/material-renderer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
         }
       }
     }
   },
-  "defaultProject": "grid-test"
+  "defaultProject": "forms",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/schematics:node-application": {
+      "framework": "express"
+    }
+  }
 }

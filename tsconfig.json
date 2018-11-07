@@ -1,21 +1,73 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
+    "importHelpers": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "module": "es2015",
+    "module": "esnext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "experimentalDecorators": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "@incrudable/*": ["libs/*"],
+      "@incrudable/forms": ["libs/forms/src/index.ts"],
+      "@incrudable/material-deps": ["libs/material-deps/src/index.ts"],
+      "@incrudable/shared/data-access-users": [
+        "libs/shared/data-access-users/src/index.ts"
+      ],
+      "@incrudable/shared/data-access-firebase": [
+        "libs/shared/data-access-firebase/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/data-access": [
+        "libs/form-admin/management/data-access/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/ui-control-settings": [
+        "libs/form-admin/management/ui-control-settings/src/index.ts"
+      ],
+      "@incrudable/shared/util/copy-clipboard": [
+        "libs/shared/util/copy-clipboard/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/feature-shell": [
+        "libs/form-admin/management/feature-shell/src/index.ts"
+      ],
+      "@incrudable/form-admin/shared/ui-route-layout": [
+        "libs/form-admin/shared/ui-route-layout/src/index.ts"
+      ],
+      "@incrudable/shared/ui-notifications": [
+        "libs/shared/ui-notifications/src/index.ts"
+      ],
+      "@incrudable/form-admin/feature-navbar": [
+        "libs/form-admin/feature-navbar/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/feature-action-bar": [
+        "libs/form-admin/management/feature-action-bar/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/ui-definition-modal": [
+        "libs/form-admin/management/ui-definition-modal/src/index.ts"
+      ],
+      "@incrudable/form-admin/management/ui-preview-modal": [
+        "libs/form-admin/management/ui-preview-modal/src/index.ts"
+      ],
+      "@incrudable/shared/util/no-space-validator": [
+        "libs/shared/util/no-space-validator/src/index.ts"
+      ],
+      "@incrudable/form-admin/feature-hooks": [
+        "libs/form-admin/feature-hooks/src/index.ts"
+      ],
+      "@incrudable/renderers/material-renderer": [
+        "libs/renderers/material-renderer/src/index.ts"
+      ]
+    },
+    "rootDir": "."
   }
 }

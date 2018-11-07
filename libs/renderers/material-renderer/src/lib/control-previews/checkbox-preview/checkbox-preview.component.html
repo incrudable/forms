@@ -1,0 +1,16 @@
+<div>{{ control?.label }}</div>
+<div class="checkbox-group">
+  <!-- account for both preview and live render paths -->
+  <ng-container *ngFor="let check of control?.typeOptions.options; index as i">
+    <!-- live render -->
+    <mat-checkbox
+      *ngIf="formGroup?.get(check.propertyName)"
+      [formControl]="formGroup?.get(check.propertyName)"
+    >
+      {{ check.label }}
+    </mat-checkbox>
+    <mat-checkbox *ngIf="!formGroup?.get(check.propertyName)">
+      {{ check.label }}
+    </mat-checkbox>
+  </ng-container>
+</div>

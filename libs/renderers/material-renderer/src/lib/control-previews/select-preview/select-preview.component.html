@@ -1,0 +1,10 @@
+<mat-form-field>
+  <mat-label>{{ control?.label }}</mat-label>
+  <mat-select [formControl]="formControl">
+    <mat-option
+      *ngFor="let select of control?.typeOptions?.options"
+      [value]="select.value"
+      >{{ select.label }}</mat-option
+    >
+  </mat-select>
+</mat-form-field>

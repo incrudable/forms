@@ -1,0 +1,15 @@
+{
+  "name": "@incrudable/forms",
+  "version": "0.0.2",
+  "peerDependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
+    "@angular/forms": "8.2.14",
+    "rxjs": "6.5.3"
+  },
+  "dependencies": {
+    "angular-gridster2": "8.2.0",
+    "lodash": "4.17.15",
+    "ng-dynamic-component": "5.0.0"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "jest"]
+  },
+  "include": [
+    "**/*.ts",
+    "../../src/lib/form-renderer/control-previews.module.ts"
+  ]
+}

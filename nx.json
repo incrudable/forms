@@ -1,0 +1,21 @@
+{
+  "npmScope": "incrudable",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "forms": {
+      "tags": ["scope:forms", "type:feature"]
+    },
+    "material-deps": {
+      "tags": ["scope:material-deps", "type:ui"]
+    },
+    "forms-renderers-material-renderer": {
+      "tags": ["scope:renderers", "type:ui"]
+    }
+  }
+}
