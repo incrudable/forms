@@ -23,8 +23,8 @@ export interface Control {
   propertyName: string;
   // user friendly name that appears as a label to end users
   label: string;
-  type: ControlType;
   position?: GridsterItem;
+  type: ControlType;
   typeOptions?: TypeOptions;
 }
 
@@ -33,15 +33,15 @@ export interface GridData extends GridsterItem {
 }
 
 interface TypeOptions {
+  options?: Option[];
   optionSource: 'static' | 'dynamic';
   optionSourceHook: string;
-  options?: Option[];
 }
 
 export interface Option {
   label: string;
-  value: any;
   propertyName: string;
+  value: any;
 }
 
 export interface RuntimeControl extends Control {
