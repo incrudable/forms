@@ -49,7 +49,7 @@ export interface RuntimeControl extends Control {
   typeOptions: TypeOptions;
 }
 
-export type NgxFormHook = () => Observable<any>;
+export type FormHook = () => Observable<any>;
 
 export interface ControlMappingEntry {
   control?: any;

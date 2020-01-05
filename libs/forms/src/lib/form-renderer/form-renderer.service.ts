@@ -1,7 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { isEqual } from 'lodash';
-import cloneDeep from 'lodash/cloneDeep';
+import { cloneDeep, isEqual } from 'lodash';
 import { combineLatest, forkJoin, Observable, of, ReplaySubject } from 'rxjs';
 import {
   debounceTime,
@@ -16,13 +15,12 @@ import {
 import {
   Control,
   Form,
+  FormHook,
   GridData,
-  NgxFormHook,
   Option,
   RuntimeControl
 } from '../engine.types';
-import { NgxFormsHook } from '../hook-registration/hook-registration.types';
-import { HookRegistration } from '../hook-registration/injection-tokens';
+import { HooksService } from '../hooks.service';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +32,7 @@ export class FormRendererService {
   private formChanges = new ReplaySubject<Form>(1);
   private controlChanges = new ReplaySubject<Control[]>(1);
 
-  constructor(@Inject(HookRegistration) private hooks: NgxFormsHook) {
+  constructor(private hooksService: HooksService) {
     this.runtimeControls = combineLatest([
       this.dynamicForm.valueChanges.pipe(
         startWith(this.dynamicForm.value),
@@ -96,13 +94,13 @@ export class FormRendererService {
     _form: any,
     control: RuntimeControl
   ): Observable<RuntimeControl> {
-    let optionListHook: NgxFormHook | undefined;
+    let optionListHook: FormHook | undefined;
     if (
       control &&
       control.typeOptions &&
       control.typeOptions.optionSource === 'dynamic'
     ) {
-      optionListHook = this.hooks.hookMap.get(
+      optionListHook = this.hooksService.formHooks.get(
         control.typeOptions.optionSourceHook
       );
       if (!optionListHook) {
@@ -110,7 +108,7 @@ export class FormRendererService {
           'Unable to find hook: ' +
             control.typeOptions.optionSourceHook +
             ' in ' +
-            this.hooks.hookMap
+            this.hooksService.formHooks
         );
       }
       return optionListHook().pipe(

@@ -79,21 +79,6 @@ import { RenderersMaterialRendererModule } from '@incrudable/material-form-rende
 export class AppModule {}
 ```
 
-Next, we need to provide a collection of hooks. When we are getting
-started, we don't really need any. So use the following stub instead.
-
-```ts
-@NgModule({
-  imports: [
-    BrowserModule,
-    RenderersMaterialRendererModule
-  ],
-  // Add the following provider
-  providers: [{ provide: HookRegistration, useValue: {hookMap: new Map()}]
-})
-export class AppModule {}
-```
-
 ### Adding a form to the page
 
 We are now free to use the Incrudable Renderer component.
@@ -381,42 +366,24 @@ developer's business logic. At the moment, hooks are only used with dynamic opti
 
 ### Registering Hooks
 
-In order to provide code for the Forms library to execute on your behalf
-it needs to be provided. The Form Library will inject the HookRegistration
-Service at run time. This provides developers the oppourtunity to supply
-a service containing a map of hook names mapped to their corresponding
-methods.
-
-Create a service that exposes a hook map
+In order for the Forms library to execute code on your behalf
+it needs to be registered. The Form Library will inject and use the HooksService
+at run time. It is in this service that the formHooks are stored in a simple Typescript map.
+This provides developers the oppourtunity to supply hooks by injecting the HooksService into their
+application code and setting additional hooks.
 
 ```ts
 // MyHookService
 // Uses HttpClient to fetch options
 export class MyHookService {
-  hookMap: new Map<string, Hook>()
-
-  constructor(private httpClient: HttpClient){
-    this.hookMap.set('answerList', this.getAnswers.bind(this))
+  constructor(private httpClient: HttpClient, private hooksService: HooksService){
+    hooksService.formHooks.set('answerList', this.getAnswers.bind(this))
   }
 
   getAnswers(){
     return this.httpClient.get<Option[]>('/api/answers')
   }
 }
-```
-
-Register that service with the application
-
-```ts
-// App Module
-@NgModule({
-  imports: [
-    BrowserModule,
-    RenderersMaterialRendererModule
-  ],
-  // Add the following provider
-  providers: [{ provide: HookRegistration, useClass: MyHookService}]
-})
 ```
 
 The "answerList" hook can now be used from a control
