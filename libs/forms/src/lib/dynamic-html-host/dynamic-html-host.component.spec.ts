@@ -16,6 +16,8 @@ describe('DynamicHtmlHostComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DynamicHtmlHostComponent);
     component = fixture.componentInstance;
+    component.selector = 'h1';
+    component.propMap = new Map();
     fixture.detectChanges();
   });
 

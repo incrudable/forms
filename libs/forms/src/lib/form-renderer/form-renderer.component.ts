@@ -4,7 +4,7 @@ import { GridsterConfig } from 'angular-gridster2';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Control, Form, RuntimeControl } from '../engine.types';
+import { Control, RuntimeControl } from '../engine.types';
 
 import {
   convertFormToGridItems,
@@ -17,13 +17,6 @@ import {
   styleUrls: ['./form-renderer.component.css']
 })
 export class FormRendererComponent {
-  @Input()
-  set form(value: Form | undefined) {
-    if (value) {
-      this.frs.updateForm(value);
-    }
-  }
-
   @Input()
   set controls(value: Control[] | undefined) {
     if (value) {
@@ -50,6 +43,6 @@ export class FormRendererComponent {
   }
 
   trackItems(_index: number, item: { control: RuntimeControl }) {
-    return item.control.id;
+    return item.control.propertyName;
   }
 }

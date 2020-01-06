@@ -2,11 +2,6 @@ import { FormControl } from '@angular/forms';
 import { GridsterItem } from 'angular-gridster2';
 import { Observable } from 'rxjs';
 
-export interface Form {
-  id: string;
-  name: string;
-}
-
 export enum ControlType {
   input = 'input',
   select = 'select',
@@ -16,9 +11,6 @@ export enum ControlType {
 }
 
 export interface Control {
-  id: string;
-  // user friendly name that appears in admin controls
-  name: string;
   // identifier used to store the value of the control
   propertyName: string;
   // user friendly name that appears as a label to end users

@@ -17,7 +17,6 @@ import { Control, Option } from '../engine.types';
  */
 export function controlDefValid(control: Control): boolean {
   return (
-    !!control.name &&
     !!control.type &&
     !!control.propertyName &&
     !!control.label &&
@@ -59,14 +58,12 @@ export function formDefValid(controls: Control[]): boolean {
 function hasNoDuplicatePropertyNames(controls: Control[]) {
   let result = true;
   controls.forEach(outterControl => {
-    controls.forEach(innerControl => {
-      if (
-        outterControl.id !== innerControl.id &&
-        outterControl.propertyName === innerControl.propertyName
-      ) {
-        result = false;
-      }
-    });
+    const res = controls.filter(
+      control => control.propertyName === outterControl.propertyName
+    );
+    if (res.length > 1) {
+      result = false;
+    }
   });
   return result;
 }

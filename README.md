@@ -97,20 +97,16 @@ import { Control, Form } from '@incrudable/forms';
   selector: 'app-root',
   // Reference the incrudable renderer from the template
   template: `
-    <incrudable-renderer [form]="form" [controls]="controls">
+    <incrudable-renderer [controls]="controls">
     </incrudable-renderer>
   `,
 })
 export class PreviewModalComponent {
   // Setup the declarative form structure
 
-  // Form Definition
-  form: Form = {id: 1, name: 'myFirstForm'};
   // Control Definitions
   controls: Control[]= [{
-    id: 2,
     label: 'A Dynamic Input!',
-    name: 'myFirstControl',
     propertyName: 'myFirstControl',
     type: 'input'
   }];
@@ -132,15 +128,12 @@ import { Control, Form, FormRendererService } from '@incrudable/forms';
 @Component({
   selector: 'app-root',
   template: `
-  <incrudable-renderer [form]="form" [controls]="controls">
+  <incrudable-renderer [controls]="controls">
   </incrudable-renderer>`,
 })
 export class PreviewModalComponent {
-  form: Form = {id: 1, name: 'myFirstForm'};
   controls: Control[]= [{
-    id: 2, 
     label: 'A Dynamic Input!',
-    name: 'myFirstControl',
     propertyName: 'myFirstControl',
     type: 'input'
   }];
@@ -166,9 +159,6 @@ definitions and renderers the form.
 \<incrudable-renderer>
 
 ### inputs
-
-form - [The form definition](#form-definition) - This is currently
-required, but adds no value ☹. It's a work in progress
 
 controls - an array containing [The list of control definitions](#control-definition) - Required
 
@@ -214,8 +204,6 @@ Control definitions describe the list of controls that comprise a form.
 ```json
 [
   {
-    "id": 2,
-    "name": "myFirstControl",
     "propertyName": "myFirstControl",
     "label": "A Dynamic Input!",
     "type": "input"
@@ -225,12 +213,8 @@ Control definitions describe the list of controls that comprise a form.
 
 #### control definition properties
 
-* id - required - Unique identifier useful when persisting controls to a
-  database
 * label - required - human readable value that will label the control on
   the rendered form
-* name - required - A user friendly display name - useful when viewing a
-  control with a tool such as [Dynamic form admin](https://ng-dynamic-forms-425c3.firebaseapp.com/dashboard)
 * propertyName - required - key that will be used to attach the
   control to a form group. The user supplied value can also be found under this
   property name. Each control must have a unique propertyName
@@ -285,10 +269,10 @@ Control definitions describe the list of controls that comprise a form.
 
 The core implemenation of Incrudable Forms is decoupled from any one
 particular look and feel. Instead, it works together with a renderer to
-produce the form that a user interacts with. 
+produce the form that a user interacts with.
 
-Renders have two roles. 1. provide the look and feel for the various 
-control types. 2. Determine how form and control definitions affect user 
+Renders have two roles. 1. provide the look and feel for the various
+control types. 2. Determine how form and control definitions affect user
 interactions.
 
 In short, Incrudable/Forms interprets the data, creates the form group and

@@ -14,7 +14,6 @@ import {
 
 import {
   Control,
-  Form,
   FormHook,
   GridData,
   Option,
@@ -29,7 +28,6 @@ export class FormRendererService {
   // The Angular Form group representing the users form
   dynamicForm = new FormGroup({});
   runtimeControls: Observable<RuntimeControl[]>;
-  private formChanges = new ReplaySubject<Form>(1);
   private controlChanges = new ReplaySubject<Control[]>(1);
 
   constructor(private hooksService: HooksService) {
@@ -50,10 +48,6 @@ export class FormRendererService {
         this.genRtControls(formValues, controls)
       )
     );
-  }
-
-  updateForm(form: Form) {
-    this.formChanges.next(form);
   }
 
   updateControls(controls: Control[]) {

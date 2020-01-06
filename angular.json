@@ -95,11 +95,11 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "jestConfig": "libs/renderers/material-renderer/jest.config.js",
+            "main": "libs/renderers/material-renderer/src/test.ts",
             "tsConfig": "libs/renderers/material-renderer/tsconfig.spec.json",
-            "setupFile": "libs/renderers/material-renderer/src/test-setup.ts"
+            "karmaConfig": "libs/renderers/material-renderer/karma.conf.js"
           }
         }
       },
