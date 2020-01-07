@@ -22,6 +22,7 @@ Incrudable Forms is an Angular library. As of 12-2019 it has only been tested ag
 
 ## Table of Contents
 
+* [Demo](#demo)
 * [Installation](#installation)
 * [Usage](#usage)
 * [incrudable-renderer component](#incrudable-renderer-component)
@@ -34,6 +35,10 @@ Incrudable Forms is an Angular library. As of 12-2019 it has only been tested ag
 * [Validations](#validations)
 * [About the Author](#about-the-author)
 * [License](#license)
+
+## Demo
+
+https://stackblitz.com/edit/incrudable-forms-demo
 
 ## Installation
 
