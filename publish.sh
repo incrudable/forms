@@ -209,30 +209,27 @@ if [ $containsMatRenderer -eq 0 ]; then
     yarn
   fi
 
-  # Set mat renderer's new version number
-  if [ $bumpVersion == "y" ]; then
-    npm version $matRendererVersion --allow-same-version
-
-    # Update the version number of its local deps
-    if [ $containsForms -eq 0 ]; then
-      sed -i "/incrudable\/forms/s/[0-9]*\.[0-9]*\.[0-9]*/$formsVersion/" package.json
-    fi
-    if [ $containsMatDeps -eq 0 ]; then
-      sed -i "/incrudable\/material-deps/s/[0-9]*\.[0-9]*\.[0-9]*/$matDepsVersion/" package.json
-    fi
-  fi
-
   if [[ $build == "y" ]] ; then
-    # Grab the freshly build local dependencies and copy them over before building
-    echo 'Copying local deps'
-    rm -rf node_modules/@incrudable/forms
-    rm -rf node_modules/@incrudable/material-deps
-    cp -R '../../../dist/libs/forms' 'node_modules/@incrudable'
-    cp -R '../../../dist/libs/material-deps' 'node_modules/@incrudable'
     # perform the build
     ng build material-form-renderer
   fi
   popd
+
+  pushd 'dist/libs/renderers/material-renderer'
+    # Set mat renderer's new version number
+    if [ $bumpVersion == "y" ]; then
+      npm version $matRendererVersion --allow-same-version
+
+      # Update the version number of its local deps
+      if [ $containsForms -eq 0 ]; then
+        sed -i "/incrudable\/forms/s/\"file:.*\"/\"$formsVersion\"/" package.json
+      fi
+      if [ $containsMatDeps -eq 0 ]; then
+        sed -i "/incrudable\/material-deps/s/\"file:.*\"/\"$matDepsVersion\"/" package.json
+      fi
+    fi
+  popd
+
 fi
 
 # Deploy listed libs
