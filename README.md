@@ -18,7 +18,7 @@ declarative API for form generation.
 
 ## Prerequisites
 
-Incrudable Forms is an Angular library. As of 12-2019 it has only been tested against Angular 8.*
+Incrudable Forms is an Angular library. As of Feb. 2019 it has been tested against Angular 8.* and 9.0
 
 ## Table of Contents
 
@@ -319,19 +319,11 @@ const controls: ControlMapping = {
   date: { control: DatePreviewComponent }
 };
 
-const controlList = [
-  InputPreviewComponent,
-  SelectPreviewComponent,
-  RadioPreviewComponent,
-  CheckboxPreviewComponent,
-  DatePreviewComponent
-];
-
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormEngineModule.forRoot(controls, controlList),
+    FormEngineModule.forRoot(controls),
     MaterialDepsModule
   ],
   declarations: [

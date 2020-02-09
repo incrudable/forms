@@ -18,19 +18,11 @@ const controls: ControlMapping = {
   date: { control: DatePreviewComponent }
 };
 
-const controlList = [
-  InputPreviewComponent,
-  SelectPreviewComponent,
-  RadioPreviewComponent,
-  CheckboxPreviewComponent,
-  DatePreviewComponent
-];
-
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormEngineModule.forRoot(controls, controlList),
+    FormEngineModule.forRoot(controls),
     MaterialDepsModule
   ],
   declarations: [

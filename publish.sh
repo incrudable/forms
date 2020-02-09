@@ -175,7 +175,7 @@ if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   fi
     # While we are here, bump forms version number and build
   if [[ $containsForms -eq 0 && $bumpVersion == "y" ]] ; then
-    npm version $formsVersion
+    npm version $formsVersion --allow-same-version
   fi
 
   if [[ $build == "y" ]] ; then
@@ -193,7 +193,7 @@ if [[ $containsMatDeps -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   fi
   # While we are here bump mat deps version number and build
   if [[ $containsMatDeps -eq 0 && $bumpVersion == "y" ]] ; then
-    npm version $matDepsVersion
+    npm version $matDepsVersion --allow-same-version
   fi
   if [[ $build == "y" ]] ; then
     ng build material-deps
@@ -211,7 +211,7 @@ if [ $containsMatRenderer -eq 0 ]; then
 
   # Set mat renderer's new version number
   if [ $bumpVersion == "y" ]; then
-    npm version $matRendererVersion
+    npm version $matRendererVersion --allow-same-version
 
     # Update the version number of its local deps
     if [ $containsForms -eq 0 ]; then
@@ -230,7 +230,7 @@ if [ $containsMatRenderer -eq 0 ]; then
     cp -R '../../../dist/libs/forms' 'node_modules/@incrudable'
     cp -R '../../../dist/libs/material-deps' 'node_modules/@incrudable'
     # perform the build
-    ng build forms-renderers-material-renderer
+    ng build material-form-renderer
   fi
   popd
 fi

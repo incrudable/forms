@@ -20,9 +20,9 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@incrudable/*": ["libs/*"],
-      "@incrudable/forms": ["dist/libs/forms"],
-      "@incrudable/material-deps": ["dist/libs/material-deps"],
-      "@incrudable/renderers/material-renderer": [
+      "@incrudable/forms": ["libs/forms/src/index.ts"],
+      "@incrudable/material-deps": ["libs/material-deps/src/index.ts"],
+      "@incrudable/material-form-renderer": [
         "libs/renderers/material-renderer/src/index.ts"
       ]
     },

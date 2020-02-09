@@ -1,13 +1,13 @@
 {
   "name": "@incrudable/material-form-renderer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "peerDependencies": {
-    "@angular/common": "^8.2.14",
-    "@angular/core": "^8.2.14",
-    "@angular/forms": "8.2.14"
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/forms": "9.0.0"
   },
   "dependencies": {
-    "@incrudable/forms": "^0.0.5",
-    "@incrudable/material-deps": "^0.0.2"
+    "@incrudable/forms": "^0.0.6",
+    "@incrudable/material-deps": "^0.0.3"
   }
 }

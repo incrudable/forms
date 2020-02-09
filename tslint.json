@@ -117,10 +117,7 @@
         "depConstraints": [
           {
             "sourceTag": "scope:renderers",
-            "onlyDependOnLibsWithTags": [
-              "scope:forms",
-              "scope:material-deps"
-            ]
+            "onlyDependOnLibsWithTags": ["scope:forms", "scope:material-deps"]
           },
           {
             "sourceTag": "scope:form-admin",
