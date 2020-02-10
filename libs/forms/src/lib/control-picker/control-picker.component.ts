@@ -1,9 +1,12 @@
 import { Component, Inject, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 import { ControlMappingToken } from '../control-mapping.injection-token';
 import { DynamicHtmlHostComponent } from '../dynamic-html-host/dynamic-html-host.component';
-import { Control, ControlMapping, ControlMappingEntry } from '../engine.types';
+import {
+  ControlMapping,
+  ControlMappingEntry,
+  RuntimeControl
+} from '../engine.types';
 
 @Component({
   selector: 'incrudable-control-picker',
@@ -12,7 +15,7 @@ import { Control, ControlMapping, ControlMappingEntry } from '../engine.types';
 })
 export class ControlPickerComponent {
   @Input()
-  set control(value: Control | undefined) {
+  set control(value: RuntimeControl | undefined) {
     if (value) {
       this.controlMappingEntry = this.controlMapping[value.type];
       if (this.controlMappingEntry) {
@@ -27,26 +30,9 @@ export class ControlPickerComponent {
           };
           this.previewControlType = DynamicHtmlHostComponent;
         } else {
-          this.inputs = {
-            ...this.inputs,
-            control: value
-          };
+          this.inputs = { control: value };
           this.previewControlType = this.controlMappingEntry.control;
         }
-      }
-    }
-  }
-
-  @Input()
-  set dynamicControl(value: FormControl | undefined) {
-    if (value) {
-      if (this.controlMappingEntry && this.controlMappingEntry.selector) {
-        this.inputs = {
-          ...this.inputs,
-          propMap: { ...this.inputs.propMap, formControl: value }
-        };
-      } else {
-        this.inputs = { ...this.inputs, formControl: value };
       }
     }
   }

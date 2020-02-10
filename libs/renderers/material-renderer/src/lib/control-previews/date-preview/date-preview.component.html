@@ -1,6 +1,6 @@
-<mat-form-field class="date-form-field">
+<mat-form-field class="date-form-field" *ngIf="control?.formControl">
   <input
-    [formControl]="formControl"
+    [formControl]="control?.formControl"
     matInput
     [matDatepicker]="picker"
     [placeholder]="control?.label"

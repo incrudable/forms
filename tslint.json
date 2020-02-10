@@ -120,7 +120,7 @@
             "onlyDependOnLibsWithTags": ["scope:forms", "scope:material-deps"]
           },
           {
-            "sourceTag": "scope:form-admin",
+            "sourceTag": "scope:demo",
             "onlyDependOnLibsWithTags": [
               "scope:shared",
               "scope:form-admin",
@@ -128,24 +128,6 @@
               "scope:forms",
               "scope:renderers"
             ]
-          },
-          {
-            "sourceTag": "scope:grid-test",
-            "onlyDependOnLibsWithTags": [
-              "scope:shared",
-              "scope:forms",
-              "scope:form-admin",
-              "scope:material-deps",
-              "scope:dynamic-html-host"
-            ]
-          },
-          {
-            "sourceTag": "scope:shared",
-            "onlyDependOnLibsWithTags": ["scope:shared", "scope:material-deps"]
-          },
-          {
-            "sourceTag": "type:util",
-            "onlyDependOnLibsWithTags": ["type:util"]
           }
         ]
       }

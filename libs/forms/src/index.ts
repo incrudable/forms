@@ -5,3 +5,4 @@ export * from './lib/engine.types';
 export * from './lib/utils/control-validators';
 export * from './lib/form-renderer/form-renderer.service';
 export * from './lib/hooks.service';
+export * from './lib/validators.service';

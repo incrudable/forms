@@ -18,7 +18,7 @@
       "tags": ["scope:renderers", "type:ui"]
     },
     "demo": {
-      "tags": []
+      "tags": ["scope:demo", "type:app"]
     },
     "demo-e2e": {
       "tags": [],

@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {
+  ControlType,
+  FormRendererService,
+  ValidatorsService,
+  RuntimeControl
+} from '@incrudable/forms';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -7,12 +13,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor(
+    public formService: FormRendererService,
+    public validatorService: ValidatorsService
+  ) {
+    this.validatorService.addValidator(
+      'simpleNum',
+      'simpleNum',
+      'Number must be greater or equal to 3',
+      (control: RuntimeControl) => {
+        return control.formControl.value >= 3;
+      }
+    );
+  }
   // Control Definitions
   controls = [
     {
-      id: '8oH0V31dCUBmFsSFFcZ2',
+      label: 'Simple Num',
+      propertyName: 'simpleNum',
+      type: ControlType.input,
+      controlValidators: ['simpleNum']
+    },
+    {
       label: 'Make a selection here!',
-      name: 'select',
       position: {
         cols: 2,
         rows: 1,
@@ -20,7 +43,7 @@ export class AppComponent {
         y: 2
       },
       propertyName: 'selectInput',
-      type: 'select',
+      type: ControlType.select,
       typeOptions: {
         optionSource: 'static',
         optionSourceHook: '',
@@ -47,6 +70,7 @@ export class AppComponent {
       id: 'JvRmL5eyUVWDPSGLiWrI',
       label: 'Simple Text Input',
       name: 'Simple Text Input',
+      controlValidators: ['required'],
       position: {
         cols: 1,
         rows: 1,
@@ -173,4 +197,11 @@ export class AppComponent {
       }
     }
   ];
+
+  logFormState() {
+    console.log(
+      this.formService.dynamicForm,
+      this.validatorService.controlValidators.get('required')
+    );
+  }
 }

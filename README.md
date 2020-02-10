@@ -7,7 +7,7 @@
 
 [![GitHub forks](https://img.shields.io/github/forks/incrudable/forms.svg?style=social&label=Fork)](https://github.com/incrudable/forms/fork) [![GitHub stars](https://img.shields.io/github/stars/incrudable/forms.svg?style=social&label=Star)](https://github.com/incrudable/forms)
 
-----
+---
 
 ## The Goal of Incrudable Forms
 
@@ -18,23 +18,23 @@ declarative API for form generation.
 
 ## Prerequisites
 
-Incrudable Forms is an Angular library. As of Feb. 2019 it has been tested against Angular 8.* and 9.0
+Incrudable Forms is an Angular library. As of Feb. 2019 it has been tested against Angular 8.\* and 9.0
 
 ## Table of Contents
 
-* [Demo](#demo)
-* [Installation](#installation)
-* [Usage](#usage)
-* [incrudable-renderer component](#incrudable-renderer-component)
-* [Form and Control Definitions](#form-and-control-definitions)
-* [Built-in Renderers](#built-in-renderers)
-* [Built-in Form Controls](#built-in-form-controls)
-* [Defining Custom Renderers](#defining-custom-renderers)
-* [Hooks](#hooks)
-* [Interactions](#interactions)
-* [Validations](#validations)
-* [About the Author](#about-the-author)
-* [License](#license)
+- [Demo](#demo)
+- [Installation](#installation)
+- [Usage](#usage)
+- [incrudable-renderer component](#incrudable-renderer-component)
+- [Form and Control Definitions](#form-and-control-definitions)
+- [Built-in Renderers](#built-in-renderers)
+- [Built-in Form Controls](#built-in-form-controls)
+- [Defining Custom Renderers](#defining-custom-renderers)
+- [Validators](#validators)
+- [Hooks](#hooks)
+- [Interactions](#interactions)
+- [About the Author](#about-the-author)
+- [License](#license)
 
 ## Demo
 
@@ -70,9 +70,9 @@ Let's start by adding the "material-form-renderer" module to the
 application:
 
 ```ts
-import { NgModule } from '@angular/core'
+import { NgModule } from '@angular/core';
 // Import the renderer module
-import { RenderersMaterialRendererModule } from '@incrudable/material-form-renderer'
+import { RenderersMaterialRendererModule } from '@incrudable/material-form-renderer';
 
 @NgModule({
   imports: [
@@ -97,21 +97,21 @@ import { Control, Form } from '@incrudable/forms';
   selector: 'app-root',
   // Reference the incrudable renderer from the template
   template: `
-    <incrudable-renderer [controls]="controls">
-    </incrudable-renderer>
-  `,
+    <incrudable-renderer [controls]="controls"> </incrudable-renderer>
+  `
 })
 export class PreviewModalComponent {
   // Setup the declarative form structure
 
   // Control Definitions
-  controls: Control[]= [{
-    label: 'A Dynamic Input!',
-    propertyName: 'myFirstControl',
-    type: 'input'
-  }];
+  controls: Control[] = [
+    {
+      label: 'A Dynamic Input!',
+      propertyName: 'myFirstControl',
+      type: 'input'
+    }
+  ];
 }
-
 ```
 
 ### Accessing form data
@@ -128,21 +128,24 @@ import { Control, Form, FormRendererService } from '@incrudable/forms';
 @Component({
   selector: 'app-root',
   template: `
-  <incrudable-renderer [controls]="controls">
-  </incrudable-renderer>`,
+    <incrudable-renderer [controls]="controls"> </incrudable-renderer>
+  `
 })
 export class PreviewModalComponent {
-  controls: Control[]= [{
-    label: 'A Dynamic Input!',
-    propertyName: 'myFirstControl',
-    type: 'input'
-  }];
+  controls: Control[] = [
+    {
+      label: 'A Dynamic Input!',
+      propertyName: 'myFirstControl',
+      type: 'input'
+    }
+  ];
   // inject the form renderer service
-  constructor(formRendererService: FormRendererService){
+  constructor(formRendererService: FormRendererService) {
     const formGroup = formRendererService.dynamicForm;
     // Access the values as they change over time
-    formGroup.valueChanges
-      .subscribe(formValue => console.log('formValue', formValue));
+    formGroup.valueChanges.subscribe(formValue =>
+      console.log('formValue', formValue)
+    );
   }
 }
 ```
@@ -191,8 +194,8 @@ as feature development continues.
 
 #### form definition properties
 
-* id - Unique identifier - useful when persisting forms to a database
-* name - A user friendly display name - useful when viewing a form with
+- id - Unique identifier - useful when persisting forms to a database
+- name - A user friendly display name - useful when viewing a form with
   a tool such as [Dynamic form admin](https://ng-dynamic-forms-425c3.firebaseapp.com/dashboard)
 
 ### Control Definition
@@ -213,16 +216,18 @@ Control definitions describe the list of controls that comprise a form.
 
 #### control definition properties
 
-* label - required - human readable value that will label the control on
+- controlValidators - optional - list of names of validators to be applied
+  to the control
+- label - required - human readable value that will label the control on
   the rendered form
-* propertyName - required - key that will be used to attach the
+- propertyName - required - key that will be used to attach the
   control to a form group. The user supplied value can also be found under this
   property name. Each control must have a unique propertyName
-* position - optional - coordinate and sizing values that describe the
+- position - optional - coordinate and sizing values that describe the
   layout of the control. Based on [Angular Gridster properties](https://github.com/tiberiuzuld/angular-gridster2/blob/master/projects/angular-gridster2/src/lib/gridsterItem.interface.ts)
-* type - required - the [type](#built-in-form-controls) of UI control to
+- type - required - the [type](#built-in-form-controls) of UI control to
   render.
-* typeOptions - optional - certain control types require additional
+- typeOptions - optional - certain control types require additional
   information. For example, select needs additional details concerning the list of options a user can choose from.
 
   example
@@ -230,27 +235,29 @@ Control definitions describe the list of controls that comprise a form.
   ```json
   {
     "optionSource": "static",
-    "options": [{
-      "label": "first option",
-      "value": 1
-    }]
+    "options": [
+      {
+        "label": "first option",
+        "value": 1
+      }
+    ]
   }
   ```
 
   typeOptions properties:
 
-  * options - optional - An array of "Option"s often used with select,
-      checkbox groups and radio groups.
+  - options - optional - An array of "Option"s often used with select,
+    checkbox groups and radio groups.
 
-      Option properties:
+    Option properties:
 
-    * label - required - string value used to label the option on the UI
-    * propertyName - required - only used by checkboxGroups, used to
+    - label - required - string value used to label the option on the UI
+    - propertyName - required - only used by checkboxGroups, used to
       indicate which options are selected. Each option within an option array much hae a unique propertyName
-    * value - required - the value associated with this option. Used
+    - value - required - the value associated with this option. Used
       primarily with select controls.
-  
-  * optionSource - required - string value indicating where the renderer
+
+  - optionSource - required - string value indicating where the renderer
     should expect to find the list of options. There are currently two
     options, "static" and "dynamic". "static" is used when the list of
     options and their values are known ahead of time and can be
@@ -261,10 +268,9 @@ Control definitions describe the list of controls that comprise a form.
     fetched using an AJAX request. When set to "dynamic" the developer
     must also supply a valid "optionSourceHook"
 
-  * optionSourceHook - optional - a string used to identify which [hook]
-    (#hooks) should be called to obtain the list of "options". The hook
+  - optionSourceHook - optional - a string used to identify which [hook](#hooks) should be called to obtain the list of "options". The hook
     must return an Observable<Option[]>
-  
+
 ## Built-in Renderers
 
 The core implemenation of Incrudable Forms is decoupled from any one
@@ -281,14 +287,14 @@ from these rules.
 
 Today, Incrudable provides the following renderers:
 
-* [@Incrudable/material-form-renderer](https://www.npmjs.com/package/@incrudable/material-form-renderer) - Provides Angular Material visuals and behavior
+- [@Incrudable/material-form-renderer](https://www.npmjs.com/package/@incrudable/material-form-renderer) - Provides Angular Material visuals and behavior
 
 ## Built-in Form Controls
 
 Incrudable Forms supports the following control types
 
 | Control Type | Identifier | Material Renderer Support | Description                                                     |
-|--------------|------------|---------------------------|-----------------------------------------------------------------|
+| ------------ | ---------- | ------------------------- | --------------------------------------------------------------- |
 | input        | input      | ✔                         | simple text input field                                         |
 | select       | select     | ✔                         | drop down supporting static or dynamic options                  |
 | date         | date       | ✔                         | simple date picker                                              |
@@ -301,8 +307,8 @@ In addition to the built-in renderers it is also possible to build your own. Thi
 
 Each control component must accept two inputs
 
-* control - accepts the Control definition it should render
-* formControl - an Angular FormControl that is generated from the control definition
+- control - accepts the Control definition it should render
+- formControl - an Angular FormControl that is generated from the control definition
 
 It is up to you to choose how the control should be rendered and connected to the form control. You can see an example of how the material
 renderer connects these controls [here](https://github.com/incrudable/forms/tree/master/libs/renderers/material-renderer/src/lib/control-previews/input-preview)
@@ -340,6 +346,138 @@ export class RenderersMaterialRendererModule {}
 
 With the controls defined and registered. The module they are registered with can be used in place of a built-in renderer.
 
+## Validators
+
+Validators are a way of adding form and control level validation. Today,
+the Form library ships a single built-in validator, the "required"
+validator. Applying a validator is as simple as adding it to the array of
+validators on the control definition.
+
+```json
+{
+  "label": "Simple Text Input",
+  "controlValidators": ["required"],
+  ...
+  "propertyName": "textInput",
+  "type": "input",
+  "typeOptions": {
+    ...
+  }
+}
+```
+
+### Registering Custom Validators
+
+In addition to built-in validators, it is possible to add custom validators
+as well. Custom validators must be registered with the Form
+ValidatorService. The Form library will inject and use the
+ValidatorService at run time.
+
+```ts
+// MyCustomValidatorService
+// Adds a couple of custom validators to the Validator Service
+export class MyCustomValidatorsService {
+  constructor(
+    private httpClient: HttpClient,
+    validatorsService: ValidatorsService
+  ) {
+    validatorsService.setValidator(
+      'simpleNum',
+      'simpleNum',
+      'Number must be between 1 and 10',
+      simpleNumberValidation
+    );
+    validatorsService.setAsyncValidator(
+      'validUsername',
+      'username',
+      'Username is invalid',
+      this.usernameTakeN.bind(this)
+    );
+  }
+
+  usernameTaken(control: RuntimeControl) {
+    const params = new HttpParams().set('username', control.formControl.value);
+
+    return this.httpClient.get<{ taken: boolean }>('/username/validate', {
+      params
+    });
+  }
+}
+
+// Verifies a number is between 1 and 10 (inclusive)
+function simpleNumberValidation(control: RuntimeControl) {
+  return control.formControl.value > 0 && control.formControl.value < 11;
+}
+```
+
+The "usernameTaken" and "validUsername" validators can now be used
+in a control's definition
+
+```ts
+const username: Control {
+  ...
+  controlValidators: ['required', 'validUsername']
+  ...
+}
+
+const simpleNum: Control {
+  ...
+  controlValidators: ['simpleNum']
+  ...
+}
+```
+
+### ValidatorsService
+
+The validator service manages validators; allowing registration
+and clearing of custom validation functions.
+
+#### Methods
+
+- addValidator - Adds a synchronous validator to the list of validators
+  that can be referenced from a control definition
+
+  signature
+
+  - addValidator(name: string, failureCode: string, failureMessage: string, validate: CtrlValidatorFn) => void
+
+  parameters
+
+  - name - string value used to reference the validator from a control
+    definition
+  - failureCode - validators indicate that the control is invalid
+    by attaching this string value to runtime control.
+  - failureMessage - this message will appear in the UI to inform the user
+    that the control is invalid.
+  - validate - function used to perform the validation. The function must except a Runtime Control and return true/false to indicate if the control is valid
+
+- addAsyncValidator - Adds an asynchronous validator to the list of validators that can be referenced from a control definition.
+
+  signature
+
+  - addAsyncValidator(name: string, failureCode: string, failureMessage: string, validate: AsyncCtrlValidatorFn) => void
+
+  parameters
+
+  - name - string value used to reference the validator from a control
+    definition
+  - failureCode - validators indicate that the control is invalid
+    by attaching this string value to runtime control.
+  - failureMessage - this message will appear in the UI to inform the user
+    that the control is invalid.
+  - validate - function used to perform the validation. The function must except a Runtime Control and return an Observable of true/false value to indicate if the control is valid
+
+- clearValidator - Removes a validator from the list of validators that
+  can be referenced from a control definition
+
+  signature
+
+  - clearValidator(name: string) => void
+
+  parameters
+
+  - name - string name of the validator to remove
+
 ## Hooks
 
 Hooks are a way of connecting the declarative form definitions to
@@ -348,7 +486,7 @@ developer's business logic. At the moment, hooks are only used with dynamic opti
 ### Registering Hooks
 
 In order for the Forms library to execute code on your behalf
-it needs to be registered. The Form Library will inject and use the HooksService
+it needs to be registered. The Form library will inject and use the HooksService
 at run time. It is in this service that the formHooks are stored in a simple Typescript map.
 This provides developers the oppourtunity to supply hooks by injecting the HooksService into their
 application code and setting additional hooks.
@@ -357,12 +495,12 @@ application code and setting additional hooks.
 // MyHookService
 // Uses HttpClient to fetch options
 export class MyHookService {
-  constructor(private httpClient: HttpClient, private hooksService: HooksService){
-    hooksService.formHooks.set('answerList', this.getAnswers.bind(this))
+  constructor(private httpClient: HttpClient, hooksService: HooksService) {
+    hooksService.formHooks.set('answerList', this.getAnswers.bind(this));
   }
 
-  getAnswers(){
-    return this.httpClient.get<Option[]>('/api/answers')
+  getAnswers() {
+    return this.httpClient.get<Option[]>('/api/answers');
   }
 }
 ```
@@ -372,7 +510,7 @@ The "answerList" hook can now be used from a control
 ```ts
 const questionOptions: TypeOptions = {
   optionSource: 'dynamic',
-  optionSourceHook: "answerList"
+  optionSourceHook: 'answerList'
 };
 ```
 
@@ -382,13 +520,6 @@ Interactions are part of the Control definition that describes how a
 user's interaction with a control affect a change in another control
 
 Interactions are still a work in progress
-
-## Validations
-
-Validations are part of the Control and Form definitions that describe
-what makes a user's interaction with a control valid.
-
-Validations are still a work in progress
 
 ## About the Author
 

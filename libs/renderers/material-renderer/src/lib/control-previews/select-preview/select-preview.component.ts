@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { Control } from '@incrudable/forms';
+import { RuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-select-preview',
@@ -8,6 +7,5 @@ import { Control } from '@incrudable/forms';
   styleUrls: ['./select-preview.component.css']
 })
 export class SelectPreviewComponent {
-  @Input() control?: Control;
-  @Input('formControl') formControl = new FormControl();
+  @Input() control?: RuntimeControl;
 }

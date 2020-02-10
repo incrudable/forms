@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { RuntimeControl } from '@incrudable/forms';
 
 @Component({
@@ -9,5 +8,4 @@ import { RuntimeControl } from '@incrudable/forms';
 })
 export class CheckboxPreviewComponent {
   @Input() control?: RuntimeControl;
-  @Input('formControl') formGroup?: FormGroup = new FormGroup({});
 }

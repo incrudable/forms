@@ -1,6 +1,7 @@
 <label id="radio-group-label">{{ control?.label }}</label>
 <mat-radio-group
-  [formControl]="formControl"
+  *ngIf="control?.formControl"
+  [formControl]="control?.formControl"
   aria-labelledby="radio-group-label"
 >
   <mat-radio-button

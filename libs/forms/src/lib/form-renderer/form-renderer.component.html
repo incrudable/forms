@@ -1,12 +1,11 @@
 <gridster *ngIf="gridItems && options" [options]="options">
   <gridster-item
     [item]="item"
-    *ngFor="let item of (gridItems | async); trackBy: trackItems"
+    *ngFor="let item of gridItems | async; trackBy: trackItems"
   >
     <div class="gridster-item-content">
       <incrudable-control-picker
         [control]="item.control"
-        [dynamicControl]="dynamicForm.get(item.control.propertyName)"
       ></incrudable-control-picker>
     </div>
   </gridster-item>
