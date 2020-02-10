@@ -25,7 +25,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 const matDependencies = [
   MatAutocompleteModule,
@@ -55,7 +55,12 @@ const matDependencies = [
 ];
 @NgModule({
   declarations: [],
-  imports: [CommonModule, DragDropModule, ...matDependencies],
-  exports: [DragDropModule, ...matDependencies]
+  imports: [
+    CommonModule,
+    DragDropModule,
+    ...matDependencies,
+    NgxMaterialTimepickerModule
+  ],
+  exports: [DragDropModule, ...matDependencies, NgxMaterialTimepickerModule]
 })
 export class MaterialDepsModule {}

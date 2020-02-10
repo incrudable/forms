@@ -7,7 +7,8 @@ export enum ControlType {
   select = 'select',
   date = 'date',
   checkGroup = 'checkGroup',
-  radioGroup = 'radioGroup'
+  radioGroup = 'radioGroup',
+  time = 'time'
 }
 
 export interface Control {

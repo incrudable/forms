@@ -154,6 +154,23 @@ export class AppComponent {
         optionSource: 'static',
         optionSourceHook: ''
       }
+    },
+    {
+      id: 's9kasW0kawjaIkaw87sU',
+      label: 'A Time Picker',
+      name: 'Simple Time Picker',
+      position: {
+        cols: 1,
+        rows: 1,
+        x: 0,
+        y: 3
+      },
+      propertyName: 'timeInput',
+      type: 'time',
+      typeOptions: {
+        optionSource: 'static',
+        optionSourceHook: ''
+      }
     }
   ];
 }

@@ -2210,6 +2210,11 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
   integrity sha512-ijGqzZt/b7BfzcK9vTrS6MFljQRPn5BFWOx8oE0GYxribu6uV+aA9zZuXI1zc/etK9E8nrgdoF2+LgUw7+9tJQ==
 
+"@types/luxon@^1.11.1":
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.21.0.tgz#db792d29f535d49522cb6d94dd9da053efc950a1"
+  integrity sha512-Zhrf65tpjOlVIYrUhX9eu1VzRo8iixQDLFPbfqFxPpG4pBTNNPZ2BFhYE0IAsDfW9GWg+RcrUqiLwrGJH4rq4w==
+
 "@types/minimatch@*":
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
@@ -7934,6 +7939,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+luxon@^1.11.3:
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.22.0.tgz#639525c7c69e594953c7b142794466b8ea85b868"
+  integrity sha512-3sLvlfbFo+AxVEY3IqxymbumtnlgBwjDExxK60W3d+trrUzErNAz/PfvPT+mva+vEUrdIodeCOs7fB6zHtRSrw==
+
 magic-string@0.25.3, magic-string@^0.25.0:
   version "0.25.3"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.3.tgz#34b8d2a2c7fec9d9bdf9929a3fd81d271ef35be9"
@@ -8431,6 +8441,15 @@ ng-packagr@9.0.0:
     stylus "^0.54.7"
     terser "^4.3.8"
     update-notifier "^4.0.0"
+
+ngx-material-timepicker@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ngx-material-timepicker/-/ngx-material-timepicker-5.3.0.tgz#cde2b74d2c38c9c022b0f02f1754d1338d524321"
+  integrity sha512-6DJ0/bf/Rtv+iflsjy5hr7P/CKcwh7DjDO3wmmAxzjCsVY2HjzcGjDb7L4kb0++ubFEXW0xIGXtQ2NjIVbl+9A==
+  dependencies:
+    "@types/luxon" "^1.11.1"
+    luxon "^1.11.3"
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"

@@ -1,0 +1,10 @@
+<mat-form-field>
+  <input
+    matInput
+    type="text"
+    [formControl]="formControl"
+    [ngxTimepicker]="picker"
+    [placeholder]="control?.label"
+  />
+</mat-form-field>
+<ngx-material-timepicker #picker></ngx-material-timepicker>
