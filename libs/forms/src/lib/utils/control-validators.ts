@@ -1,4 +1,4 @@
-import { Control, Option } from '../engine.types';
+import { Control, ControlType, Option } from '../engine.types';
 
 // This file contains the rules that validate a form schema
 // This is not directly related to Angular Form Validation
@@ -78,7 +78,10 @@ function hasNoDuplicatePropertyNames(controls: Control[]) {
  * @param control control to be verified
  */
 function hasValidTypeOptions(control: Control) {
-  if (control.type === 'radioGroup' || control.type === 'checkGroup') {
+  if (
+    control.type === ControlType.radioGroup ||
+    control.type === ControlType.checkGroup
+  ) {
     if (control.typeOptions) {
       // type options (other than option lists) will be verified here
       if (control.typeOptions.options) {

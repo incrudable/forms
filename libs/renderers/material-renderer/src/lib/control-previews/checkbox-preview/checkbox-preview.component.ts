@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RuntimeControl } from '@incrudable/forms';
+import { CheckGroupRuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-checkbox-preview',
@@ -7,5 +7,5 @@ import { RuntimeControl } from '@incrudable/forms';
   styleUrls: ['./checkbox-preview.component.css']
 })
 export class CheckboxPreviewComponent {
-  @Input() control?: RuntimeControl;
+  @Input() control?: CheckGroupRuntimeControl;
 }

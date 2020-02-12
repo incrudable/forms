@@ -6,15 +6,15 @@ export enum ControlType {
   input = 'input',
   select = 'select',
   date = 'date',
+  time = 'time',
   checkGroup = 'checkGroup',
-  radioGroup = 'radioGroup',
-  time = 'time'
+  radioGroup = 'radioGroup'
 }
 
 // Interface describing a control
 // This is the serializable definition
 // that can be be persisted to a backend
-export interface Control {
+export interface BaseControl {
   // Name(s) of validator(s) to apply to the control
   controlValidators?: string[];
   label: string;
@@ -23,8 +23,54 @@ export interface Control {
   propertyName: string;
   // user friendly name that appears as a label to end users
   type: ControlType;
-  typeOptions?: TypeOptions;
 }
+
+export interface InputControl extends BaseControl {
+  type: ControlType.input;
+}
+
+export interface SelectOptions {
+  options?: Option[];
+  optionSource: 'static' | 'dynamic';
+  optionSourceHook: string;
+}
+export interface SelectControl extends BaseControl {
+  type: ControlType.select;
+  typeOptions?: SelectOptions;
+}
+
+export interface DateControl extends BaseControl {
+  type: ControlType.date;
+}
+
+export interface TimeOptions {
+  format: number; // 12 or 24 hour format
+}
+export interface TimeControl extends BaseControl {
+  type: ControlType.time;
+  typeOptions?: TimeOptions;
+}
+
+export type CheckGroupOptions = SelectOptions;
+
+export interface CheckGroupControl extends BaseControl {
+  type: ControlType.checkGroup;
+  typeOptions?: CheckGroupOptions;
+}
+
+export type RadioGroupOptions = SelectOptions;
+export interface RadioGroupControl extends BaseControl {
+  type: ControlType.radioGroup;
+  typeOptions: RadioGroupOptions;
+}
+
+export type Control =
+  | InputControl
+  | SelectControl
+  | DateControl
+  | TimeControl
+  | CheckGroupControl
+  | RadioGroupControl;
 
 // Interface describing a control after it has
 // been "hydrated". For example, validator names
@@ -32,10 +78,25 @@ export interface Control {
 // ControlValidators that include the validation method
 // It will also have the native Angular Form Control attached
 // to it for simplicity sake
-export interface RuntimeControl extends Control {
+export interface BaseRuntimeControl extends BaseControl {
   formControl: AbstractControl;
   validators: ControlValidator[];
 }
+
+export type InputRunTimeControl = BaseRuntimeControl & InputControl;
+export type SelectRuntimeControl = BaseRuntimeControl & SelectControl;
+export type DateRunTimeControl = BaseRuntimeControl & DateControl;
+export type TimeRunTimeControl = BaseRuntimeControl & TimeControl;
+export type CheckGroupRuntimeControl = BaseRuntimeControl & CheckGroupControl;
+export type RadioGroupRuntimeControl = BaseRuntimeControl & RadioGroupControl;
+
+export type RuntimeControl =
+  | InputRunTimeControl
+  | SelectRuntimeControl
+  | DateRunTimeControl
+  | TimeRunTimeControl
+  | CheckGroupRuntimeControl
+  | RadioGroupRuntimeControl;
 
 export interface BaseControlValidator {
   name: string;
@@ -64,12 +125,6 @@ export type ControlValidator = SyncControlValidator | AsyncControlValidator;
 
 export interface GridData extends GridsterItem {
   control: Control;
-}
-
-interface TypeOptions {
-  options?: Option[];
-  optionSource: 'static' | 'dynamic';
-  optionSourceHook: string;
 }
 
 export interface Option {

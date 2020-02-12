@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import {
+  Control,
   ControlType,
   FormRendererService,
-  ValidatorsService,
-  RuntimeControl
+  RuntimeControl,
+  ValidatorsService
 } from '@incrudable/forms';
 
 @Component({
@@ -27,7 +28,7 @@ export class AppComponent {
     );
   }
   // Control Definitions
-  controls = [
+  controls: Control[] = [
     {
       label: 'Simple Num',
       propertyName: 'simpleNum',
@@ -67,9 +68,7 @@ export class AppComponent {
       }
     },
     {
-      id: 'JvRmL5eyUVWDPSGLiWrI',
       label: 'Simple Text Input',
-      name: 'Simple Text Input',
       controlValidators: ['required'],
       position: {
         cols: 1,
@@ -78,16 +77,10 @@ export class AppComponent {
         y: 0
       },
       propertyName: 'textInput',
-      type: 'input',
-      typeOptions: {
-        optionSource: 'static',
-        optionSourceHook: ''
-      }
+      type: ControlType.input
     },
     {
-      id: 'awoffrVfmmN3eMn4l8FP',
       label: 'Only one please!',
-      name: 'Radio',
       position: {
         cols: 1,
         rows: 3,
@@ -95,7 +88,7 @@ export class AppComponent {
         y: 0
       },
       propertyName: 'radioInput',
-      type: 'radioGroup',
+      type: ControlType.radioGroup,
       typeOptions: {
         optionSource: 'static',
         optionSourceHook: '',
@@ -129,9 +122,7 @@ export class AppComponent {
       }
     },
     {
-      id: 'uebSoIAa60CaLzWZBIQQ',
       label: 'Check Boxes',
-      name: 'check boxes',
       position: {
         cols: 1,
         rows: 2,
@@ -139,7 +130,7 @@ export class AppComponent {
         y: 0
       },
       propertyName: 'checkBoxes',
-      type: 'checkGroup',
+      type: ControlType.checkGroup,
       typeOptions: {
         optionSource: 'static',
         optionSourceHook: '',
@@ -163,9 +154,7 @@ export class AppComponent {
       }
     },
     {
-      id: 'wEdQPK7ggmsifjhgaaDk',
       label: 'A Date Picker',
-      name: 'Simple Date Picker',
       position: {
         cols: 1,
         rows: 1,
@@ -173,16 +162,10 @@ export class AppComponent {
         y: 1
       },
       propertyName: 'dateInput',
-      type: 'date',
-      typeOptions: {
-        optionSource: 'static',
-        optionSourceHook: ''
-      }
+      type: ControlType.date
     },
     {
-      id: 's9kasW0kawjaIkaw87sU',
       label: 'A Time Picker',
-      name: 'Simple Time Picker',
       position: {
         cols: 1,
         rows: 1,
@@ -190,10 +173,9 @@ export class AppComponent {
         y: 3
       },
       propertyName: 'timeInput',
-      type: 'time',
+      type: ControlType.time,
       typeOptions: {
-        optionSource: 'static',
-        optionSourceHook: ''
+        format: 24
       }
     }
   ];

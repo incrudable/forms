@@ -31,6 +31,10 @@ import {
   SyncControlValidator
 } from '../engine.types';
 import { HooksService } from '../hooks.service';
+import {
+  isCheckGroupRuntimeControl,
+  isSelectRuntimeControl
+} from '../type-guards';
 import { ValidatorsService } from '../validators.service';
 
 @Injectable({
@@ -123,9 +127,8 @@ export class FormRendererService {
   ): Observable<RuntimeControl> {
     let optionListHook: FormHook | undefined;
     if (
-      control &&
-      control.typeOptions &&
-      control.typeOptions.optionSource === 'dynamic'
+      isSelectRuntimeControl(control) &&
+      control.typeOptions?.optionSource === 'dynamic'
     ) {
       optionListHook = this.hooksService.formHooks.get(
         control.typeOptions.optionSourceHook
@@ -277,7 +280,7 @@ export function convertFormToGridItems(controls: RuntimeControl[]) {
  * @param control control to convert
  */
 function buildControl(control: RuntimeControl): AbstractControl {
-  if (control.type === 'checkGroup') {
+  if (isCheckGroupRuntimeControl(control)) {
     const group = new FormGroup({});
     let options: Option[];
     options = control.typeOptions?.options || [];

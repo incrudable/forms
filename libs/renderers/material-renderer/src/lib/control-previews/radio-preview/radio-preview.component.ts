@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { RuntimeControl } from '@incrudable/forms';
+import { RadioGroupRuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-radio-preview',
@@ -7,5 +7,5 @@ import { RuntimeControl } from '@incrudable/forms';
   styleUrls: ['./radio-preview.component.css']
 })
 export class RadioPreviewComponent {
-  @Input() control?: RuntimeControl;
+  @Input() control?: RadioGroupRuntimeControl;
 }
