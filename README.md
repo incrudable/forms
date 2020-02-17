@@ -293,13 +293,14 @@ Today, Incrudable provides the following renderers:
 
 Incrudable Forms supports the following control types
 
-| Control Type | Identifier | Material Renderer Support | Description                                                     |
-| ------------ | ---------- | ------------------------- | --------------------------------------------------------------- |
-| input        | input      | ✔                         | simple text input field                                         |
-| select       | select     | ✔                         | drop down supporting static or dynamic options                  |
-| date         | date       | ✔                         | simple date picker                                              |
-| check group  | checkGroup | ✔                         | group of check boxes allowing a user to select multiple options |
-| radio group  | radioGroup | ✔                         | radio group allowing the user to select a single option         |
+| Control Type | Identifier | Material Renderer Support   | Description                                                     |
+| ------------ | ---------- | ----------------------------| --------------------------------------------------------------- |
+| input        | input      | ✔                           | simple text input field                                         |
+| select       | select     | ✔                           | drop down supporting static or dynamic options                  |
+| date         | date       | ✔                           | simple date picker                                              |
+| time         | time       | ✔ (ngx-material-timepicker) | simple time picker supporting 12 or 24 hour format              |
+| check group  | checkGroup | ✔                           | group of check boxes allowing a user to select multiple options |
+| radio group  | radioGroup | ✔                           | radio group allowing the user to select a single option         |
 
 ## Defining Custom Renderers
 
