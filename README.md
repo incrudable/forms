@@ -91,7 +91,7 @@ We are now free to use the Incrudable Renderer component.
 ```ts
 // app.component.ts
 import { Component } from '@angular/core';
-import { Control, Form } from '@incrudable/forms';
+import { Control, ControlType, Form } from '@incrudable/forms';
 
 @Component({
   selector: 'app-root',
@@ -108,7 +108,7 @@ export class PreviewModalComponent {
     {
       label: 'A Dynamic Input!',
       propertyName: 'myFirstControl',
-      type: 'input'
+      type: ControlType.input
     }
   ];
 }
@@ -123,7 +123,12 @@ FormRendererService
 // app.component.ts
 import { Component } from '@angular/core';
 // Bring in the service type for Typescript support
-import { Control, Form, FormRendererService } from '@incrudable/forms';
+import {
+  Control,
+  ControlType,
+  Form,
+  FormRendererService
+} from '@incrudable/forms';
 
 @Component({
   selector: 'app-root',
@@ -136,7 +141,7 @@ export class PreviewModalComponent {
     {
       label: 'A Dynamic Input!',
       propertyName: 'myFirstControl',
-      type: 'input'
+      type: ControlType.input
     }
   ];
   // inject the form renderer service
@@ -509,7 +514,7 @@ export class MyHookService {
 The "answerList" hook can now be used from a control
 
 ```ts
-const questionOptions: TypeOptions = {
+const questionOptions: SelectOptions = {
   optionSource: 'dynamic',
   optionSourceHook: 'answerList'
 };

@@ -17,11 +17,11 @@ export enum ControlType {
 export interface BaseControl {
   // Name(s) of validator(s) to apply to the control
   controlValidators?: string[];
+  // user friendly name that appears as a label to end users
   label: string;
   position?: GridsterItem;
   // identifier used to store the value of the control
   propertyName: string;
-  // user friendly name that appears as a label to end users
   type: ControlType;
 }
 
