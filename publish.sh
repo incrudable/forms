@@ -167,6 +167,7 @@ fi
 # Determine what to install
 # If lib list contains forms or material-renderer
 # Install libs for forms
+yarn
 
 if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   pushd 'libs/forms'
