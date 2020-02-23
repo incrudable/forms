@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import {
   Control,
   ControlType,
@@ -28,7 +29,7 @@ export class AppComponent {
     );
   }
   // Control Definitions
-  controls: Control[] = [
+  controlSetOne: Control[] = [
     {
       label: 'Simple Num',
       propertyName: 'simpleNum',
@@ -180,10 +181,8 @@ export class AppComponent {
     }
   ];
 
-  logFormState() {
-    console.log(
-      this.formService.dynamicForm,
-      this.validatorService.controlValidators.get('required')
-    );
-  }
+  myCustomGroup = new FormGroup({});
+  controlSetTwo: Control[] = [
+    {label: 'tinyInput', propertyName: 'tinyInput', type: ControlType.input }
+  ];
 }

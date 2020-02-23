@@ -97,12 +97,15 @@ import { Control, ControlType, Form } from '@incrudable/forms';
   selector: 'app-root',
   // Reference the incrudable renderer from the template
   template: `
-    <incrudable-renderer [controls]="controls"> </incrudable-renderer>
+    <incrudable-renderer [controls]="controls" [form]="formGroup">
+    </incrudable-renderer>
   `
 })
 export class PreviewModalComponent {
-  // Setup the declarative form structure
+  // Create a FormGroup for Incrudable to manipulate
+  formGroup = new FormGroup({});
 
+  // Setup the declarative form structure
   // Control Definitions
   controls: Control[] = [
     {
@@ -116,27 +119,23 @@ export class PreviewModalComponent {
 
 ### Accessing form data
 
-The form object is generated for you and made available from the
-FormRendererService
+The form object you pass to the incrudable-renderer contains the form state
 
 ```ts
 // app.component.ts
 import { Component } from '@angular/core';
-// Bring in the service type for Typescript support
-import {
-  Control,
-  ControlType,
-  Form,
-  FormRendererService
-} from '@incrudable/forms';
+import { Control, ControlType, Form } from '@incrudable/forms';
 
 @Component({
   selector: 'app-root',
   template: `
-    <incrudable-renderer [controls]="controls"> </incrudable-renderer>
+    <incrudable-renderer [controls]="controls" [form]="formGroup">
+    </incrudable-renderer>
   `
 })
 export class PreviewModalComponent {
+  formGroup = new FormGroup({});
+
   controls: Control[] = [
     {
       label: 'A Dynamic Input!',
@@ -144,18 +143,15 @@ export class PreviewModalComponent {
       type: ControlType.input
     }
   ];
-  // inject the form renderer service
-  constructor(formRendererService: FormRendererService) {
-    const formGroup = formRendererService.dynamicForm;
+
+  constructor() {
     // Access the values as they change over time
-    formGroup.valueChanges.subscribe(formValue =>
+    this.formGroup.valueChanges.subscribe(formValue =>
       console.log('formValue', formValue)
     );
   }
 }
 ```
-
-The dynamicForm IS an Angular FormGroup. Feel free to use it as such!
 
 ## incrudable-renderer Component
 
@@ -299,7 +295,7 @@ Today, Incrudable provides the following renderers:
 Incrudable Forms supports the following control types
 
 | Control Type | Identifier | Material Renderer Support   | Description                                                     |
-| ------------ | ---------- | ----------------------------| --------------------------------------------------------------- |
+| ------------ | ---------- | --------------------------- | --------------------------------------------------------------- |
 | input        | input      | ✔                           | simple text input field                                         |
 | select       | select     | ✔                           | drop down supporting static or dynamic options                  |
 | date         | date       | ✔                           | simple date picker                                              |
@@ -530,7 +526,7 @@ Interactions are still a work in progress
 ## About the Author
 
 Paul Spears
-[@TheEverGreenDev](https://twitter.com/TheEvergreenDev)
+[@TheEvergreenDev](https://twitter.com/TheEvergreenDev)
 
 With support from [Oasis Digitial Solutions Inc](https://oasisdigital.com)
 

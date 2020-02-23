@@ -1,4 +1,4 @@
-<gridster *ngIf="gridItems && options" [options]="options">
+<gridster [options]="options">
   <gridster-item
     [item]="item"
     *ngFor="let item of gridItems | async; trackBy: trackItems"
