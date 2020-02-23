@@ -1,7 +1,12 @@
+:host {
+  width: 100%;
+}
+
 ::ng-deep .date-form-field .mat-form-field-infix {
   width: auto;
 }
 
 mat-form-field {
   margin: 5px;
+  width: 100%;
 }
