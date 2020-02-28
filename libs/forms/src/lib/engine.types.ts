@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 export enum ControlType {
   input = 'input',
+  textarea = 'textarea',
   select = 'select',
   date = 'date',
   time = 'time',
@@ -27,6 +28,10 @@ export interface BaseControl {
 
 export interface InputControl extends BaseControl {
   type: ControlType.input;
+}
+
+export interface TextareaControl extends BaseControl {
+  type: ControlType.textarea;
 }
 
 export interface SelectOptions {
@@ -66,6 +71,7 @@ export interface RadioGroupControl extends BaseControl {
 
 export type Control =
   | InputControl
+  | TextareaControl
   | SelectControl
   | DateControl
   | TimeControl
@@ -83,18 +89,20 @@ export interface BaseRuntimeControl extends BaseControl {
   validators: ControlValidator[];
 }
 
-export type InputRunTimeControl = BaseRuntimeControl & InputControl;
+export type InputRuntimeControl = BaseRuntimeControl & InputControl;
+export type TextareaRuntimeControl = BaseRuntimeControl & TextareaControl;
 export type SelectRuntimeControl = BaseRuntimeControl & SelectControl;
-export type DateRunTimeControl = BaseRuntimeControl & DateControl;
-export type TimeRunTimeControl = BaseRuntimeControl & TimeControl;
+export type DateRuntimeControl = BaseRuntimeControl & DateControl;
+export type TimeRuntimeControl = BaseRuntimeControl & TimeControl;
 export type CheckGroupRuntimeControl = BaseRuntimeControl & CheckGroupControl;
 export type RadioGroupRuntimeControl = BaseRuntimeControl & RadioGroupControl;
 
 export type RuntimeControl =
-  | InputRunTimeControl
+  | InputRuntimeControl
+  | TextareaRuntimeControl
   | SelectRuntimeControl
-  | DateRunTimeControl
-  | TimeRunTimeControl
+  | DateRuntimeControl
+  | TimeRuntimeControl
   | CheckGroupRuntimeControl
   | RadioGroupRuntimeControl;
 

@@ -9,10 +9,12 @@ import { DatePreviewComponent } from './control-previews/date-preview/date-previ
 import { InputPreviewComponent } from './control-previews/input-preview/input-preview.component';
 import { RadioPreviewComponent } from './control-previews/radio-preview/radio-preview.component';
 import { SelectPreviewComponent } from './control-previews/select-preview/select-preview.component';
+import { TextareaPreviewComponent } from './control-previews/textarea-preview/textarea-preview.component';
 import { TimePreviewComponent } from './control-previews/time-preview/time-preview.component';
 
 const controls: ControlMapping = {
   input: { control: InputPreviewComponent },
+  textarea: { control: TextareaPreviewComponent },
   select: { control: SelectPreviewComponent },
   radioGroup: { control: RadioPreviewComponent },
   checkGroup: { control: CheckboxPreviewComponent },
@@ -33,7 +35,8 @@ const controls: ControlMapping = {
     RadioPreviewComponent,
     CheckboxPreviewComponent,
     DatePreviewComponent,
-    TimePreviewComponent
+    TimePreviewComponent,
+    TextareaPreviewComponent
   ],
   exports: [FormEngineModule]
 })

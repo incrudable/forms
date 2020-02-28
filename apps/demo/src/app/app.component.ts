@@ -178,11 +178,22 @@ export class AppComponent {
       typeOptions: {
         format: 24
       }
+    },
+    {
+      label: 'Sample Text',
+      propertyName: 'sampleText',
+      type: ControlType.textarea,
+      position: {
+        cols: 2,
+        rows: 2,
+        x: 3,
+        y: 0
+      }
     }
   ];
 
   myCustomGroup = new FormGroup({});
   controlSetTwo: Control[] = [
-    {label: 'tinyInput', propertyName: 'tinyInput', type: ControlType.input }
+    { label: 'tinyInput', propertyName: 'tinyInput', type: ControlType.input }
   ];
 }

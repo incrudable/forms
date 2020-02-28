@@ -1,0 +1,14 @@
+<mat-form-field *ngIf="control?.formControl">
+  <mat-label>{{ control?.label }}</mat-label>
+  <textarea [formControl]="control?.formControl" matInput></textarea>
+  <ng-container *ngFor="let validator of validators">
+    <mat-error
+      *ngIf="
+        control?.formControl.hasError(validator.failureCode) &&
+        control?.formControl.touched
+      "
+    >
+      {{ validator.failureMessage }}
+    </mat-error>
+  </ng-container>
+</mat-form-field>

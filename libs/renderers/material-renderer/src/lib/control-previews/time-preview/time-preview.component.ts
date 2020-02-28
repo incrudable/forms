@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { TimeRunTimeControl } from '@incrudable/forms';
+import { TimeRuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-time-preview',
@@ -7,5 +7,5 @@ import { TimeRunTimeControl } from '@incrudable/forms';
   styleUrls: ['./time-preview.component.scss']
 })
 export class TimePreviewComponent {
-  @Input() control?: TimeRunTimeControl;
+  @Input() control?: TimeRuntimeControl;
 }

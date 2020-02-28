@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ControlValidator, InputRunTimeControl } from '@incrudable/forms';
+import { ControlValidator, InputRuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-input-preview',
@@ -7,11 +7,11 @@ import { ControlValidator, InputRunTimeControl } from '@incrudable/forms';
   styleUrls: ['./input-preview.component.css']
 })
 export class InputPreviewComponent {
-  @Input('control') set _control(control: InputRunTimeControl | undefined) {
+  @Input('control') set _control(control: InputRuntimeControl | undefined) {
     this.control = control;
     this.validators = control?.validators || [];
   }
-  control: InputRunTimeControl | undefined;
+  control: InputRuntimeControl | undefined;
   validators: ControlValidator[] = [];
 
   constructor() {}
