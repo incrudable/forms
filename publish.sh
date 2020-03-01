@@ -17,7 +17,7 @@ publish="y"
 # Turning this off may be helpful if script errors out in later steps
 build="y"
 
-# Run a fresh yarn install before building/publishing
+# Run a fresh npm i install before building/publishing
 # Turning this off may be helpful when you know your deps are updated
 # or you want to use a different dep client
 install="y"
@@ -167,12 +167,12 @@ fi
 # Determine what to install
 # If lib list contains forms or material-renderer
 # Install libs for forms
-yarn
+npm i
 
 if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   pushd 'libs/forms'
   if [[ $install == "y" ]] ; then
-    yarn
+    npm i
   fi
     # While we are here, bump forms version number and build
   if [[ $containsForms -eq 0 && $bumpVersion == "y" ]] ; then
@@ -190,7 +190,7 @@ fi
 if [[ $containsMatDeps -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   pushd 'libs/material-deps'
   if [[ $install == "y" ]] ; then
-    yarn
+    npm i
   fi
   # While we are here bump mat deps version number and build
   if [[ $containsMatDeps -eq 0 && $bumpVersion == "y" ]] ; then
@@ -207,7 +207,7 @@ fi
 if [ $containsMatRenderer -eq 0 ]; then
   pushd 'libs/renderers/material-renderer'
   if [[ $install == "y" ]] ; then
-    yarn
+    npm i
   fi
 
   # Set mat renderer's new version number
