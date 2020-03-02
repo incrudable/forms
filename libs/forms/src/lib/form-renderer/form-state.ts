@@ -27,17 +27,22 @@ import {
 import {
   AsyncControlValidator,
   AsyncCtrlValidatorFn,
+  CheckGroupRuntimeControl,
   Control,
   ControlValidator,
   CtrlValidatorFn,
   FormHook,
+  FormHookUpdateOn,
   Option,
+  RadioGroupRuntimeControl,
   RuntimeControl,
+  SelectRuntimeControl,
   SyncControlValidator
 } from '../engine.types';
 import { HooksService } from '../hooks.service';
 import {
   isCheckGroupRuntimeControl,
+  isRadioGroupRuntimeControl,
   isSelectRuntimeControl
 } from '../type-guards';
 import { ValidatorsService } from '../validators.service';
@@ -77,6 +82,8 @@ export class FormState {
    * FormGroup.
    */
   private formUpdate: BehaviorSubject<FormGroup>;
+
+  private oldFormValue: any | undefined;
 
   /**
    * Establishes the runtimeControls observable that represents a form's state
@@ -124,9 +131,11 @@ export class FormState {
     ).pipe(
       // genRtControls calls the formHooks to establish the complete
       // runtime definition. So we need to switch to it
-      switchMap(([formValues, controls]) =>
-        this.genRtControls(formValues, controls)
-      )
+      switchMap(([formValues, controls]) => {
+        const runTimeControls = this.genRtControls(formValues, controls);
+        this.oldFormValue = formValues;
+        return runTimeControls;
+      })
     );
   }
 
@@ -178,6 +187,7 @@ export class FormState {
     const controlWithHookResults: Observable<
       RuntimeControl
     >[] = rtControls.map(control => this.runHooks(form, control).pipe(take(1)));
+
     return forkJoin(controlWithHookResults).pipe(
       tap(controls => this.updateGroup(controls))
     );
@@ -192,33 +202,48 @@ export class FormState {
    * @param control control containing the hooks to run
    */
   private runHooks(
-    _form: any,
+    form: any,
     control: RuntimeControl
   ): Observable<RuntimeControl> {
     let optionListHook: FormHook | undefined;
+    // Currently only selects, radio groups, & check groups have dynamic options (hooks)
     if (
-      isSelectRuntimeControl(control) &&
+      (isSelectRuntimeControl(control) ||
+        isRadioGroupRuntimeControl(control) ||
+        isCheckGroupRuntimeControl(control)) &&
       control.typeOptions?.optionSource === 'dynamic'
     ) {
-      optionListHook = this.hooksService.formHooks.get(
+      // fetching the hook from the consumer defined list
+      optionListHook = this.hooksService.getHook(
         control.typeOptions.optionSourceHook
       );
+      // throw error if user has dynamic set, but didn't provide a hook name/didn't setup or provide the hook
       if (!optionListHook) {
         throw new Error(
           'Unable to find hook: ' +
             control.typeOptions.optionSourceHook +
             ' in ' +
-            this.hooksService.formHooks
+            this.hooksService.getHookEntries()
         );
       }
-      return optionListHook().pipe(
-        map(optionList => {
-          if (control.typeOptions) {
-            control.typeOptions.options = optionList;
-          }
-          return control;
-        })
-      );
+      // check to see if the hook should actually be called:
+      // `AllChanges` will always run the request when any change in the form occurs
+      // `ControlChange` will only run when the specified control(s) change value in the form
+      if (
+        optionListHook.updateOn === FormHookUpdateOn.AllChanges ||
+        (optionListHook.updateOn === FormHookUpdateOn.ControlChanges &&
+          checkIfBoundControlsChanged(
+            this.oldFormValue,
+            form,
+            optionListHook.control
+          ))
+      ) {
+        // call the hook request function with the current value of the form
+        // then update the typeOptions on the RuntimeControl with the options array from the request
+        return optionListHook
+          .request(form)
+          .pipe(setTypeOptionsOnControl(control));
+      }
     }
     return of(control);
   }
@@ -360,4 +385,47 @@ function buildControl(control: RuntimeControl): AbstractControl {
     return group;
   }
   return new FormControl();
+}
+
+/**
+ * Custom RxJS operator that returns back a modified RunTimeControl
+ * based on the Option[] data flowing through the source observable
+ *
+ * @param control control to set typeOptions on
+ */
+function setTypeOptionsOnControl(
+  control:
+    | SelectRuntimeControl
+    | RadioGroupRuntimeControl
+    | CheckGroupRuntimeControl
+) {
+  return (
+    source: Observable<Option[]>
+  ): Observable<
+    SelectRuntimeControl | RadioGroupRuntimeControl | CheckGroupRuntimeControl
+  > =>
+    source.pipe(
+      map(optionList => {
+        if (control.typeOptions) {
+          control.typeOptions.options = optionList;
+        }
+        return control;
+      })
+    );
+}
+
+/**
+ * Checks to see if the control(s) have changed values between the old & new form values
+ *
+ * @param oldFormValue the old form value
+ * @param formValue the new form value
+ * @param control the control(s) that are being checked for changes
+ */
+function checkIfBoundControlsChanged(
+  oldFormValue: any,
+  formValue: any,
+  control: string | string[]
+) {
+  const controls: string[] = typeof control === 'string' ? [control] : control;
+  return !controls.some(c => oldFormValue?.[c] === formValue?.[c]);
 }

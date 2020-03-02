@@ -133,7 +133,30 @@ export interface Option {
   value: any;
 }
 
-export type FormHook = () => Observable<any>;
+export enum FormHookUpdateOn {
+  AllChanges,
+  ControlChanges
+}
+
+export type FormHookRequest = (form: any) => Observable<any>;
+
+export interface FormHookBase {
+  request: FormHookRequest;
+  updateOn: FormHookUpdateOn;
+}
+
+export interface UpdateOnAllChangesFormHook extends FormHookBase {
+  updateOn: FormHookUpdateOn.AllChanges;
+}
+
+export interface UpdateOnControlChangeFormHook extends FormHookBase {
+  updateOn: FormHookUpdateOn.ControlChanges;
+  control: string | string[];
+}
+
+export type FormHook =
+  | UpdateOnAllChangesFormHook
+  | UpdateOnControlChangeFormHook;
 
 export interface ControlMappingEntry {
   control?: any; // Component for rendering this type of control

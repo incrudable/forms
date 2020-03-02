@@ -8,6 +8,9 @@ import {
   ValidatorsService
 } from '@incrudable/forms';
 
+import { shippingFormControls } from './shipping-form';
+import { ShippingFormHooksService } from './shipping-form-hooks.service';
+
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'my-app',
@@ -17,8 +20,10 @@ import {
 export class AppComponent {
   constructor(
     public formService: FormRendererService,
-    public validatorService: ValidatorsService
+    public validatorService: ValidatorsService,
+    shippingFormHooks: ShippingFormHooksService
   ) {
+    shippingFormHooks.setup();
     this.validatorService.addValidator(
       'simpleNum',
       'simpleNum',
@@ -183,6 +188,8 @@ export class AppComponent {
 
   myCustomGroup = new FormGroup({});
   controlSetTwo: Control[] = [
-    {label: 'tinyInput', propertyName: 'tinyInput', type: ControlType.input }
+    { label: 'tinyInput', propertyName: 'tinyInput', type: ControlType.input }
   ];
+
+  shippingFormSet = shippingFormControls;
 }

@@ -31,9 +31,7 @@
               "libs/forms/tsconfig.lib.json",
               "libs/forms/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -67,9 +65,7 @@
               "libs/material-deps/tsconfig.lib.json",
               "libs/material-deps/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       },
@@ -95,9 +91,7 @@
               "libs/renderers/material-renderer/tsconfig.lib.json",
               "libs/renderers/material-renderer/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -135,10 +129,7 @@
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
             "aot": false,
-            "assets": [
-              "apps/demo/src/favicon.ico",
-              "apps/demo/src/assets"
-            ],
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "apps/demo/src/styles.scss"
@@ -180,7 +171,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build"
+            "browserTarget": "demo:build",
+            "proxyConfig": "apps/demo/src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -201,10 +193,7 @@
               "apps/demo/tsconfig.app.json",
               "apps/demo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/demo/**"]
           }
         },
         "test": {
@@ -238,13 +227,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/demo-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo-e2e/**"
-            ]
+            "tsConfig": ["apps/demo-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/demo-e2e/**"]
           }
         }
       }

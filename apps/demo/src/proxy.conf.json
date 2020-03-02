@@ -1,0 +1,10 @@
+{
+  "/geo-names": {
+    "target": "http://api.geonames.org",
+    "pathRewrite": {
+      "^/geo-names": ""
+    },
+    "changeOrigin": true,
+    "secure": false
+  }
+}
