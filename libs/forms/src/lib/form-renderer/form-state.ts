@@ -3,7 +3,8 @@ import {
   AsyncValidatorFn,
   FormControl,
   FormGroup,
-  ValidatorFn
+  ValidatorFn,
+  Validators
 } from '@angular/forms';
 import { cloneDeep, isEqual } from 'lodash';
 import {
@@ -37,7 +38,8 @@ import {
   RadioGroupRuntimeControl,
   RuntimeControl,
   SelectRuntimeControl,
-  SyncControlValidator
+  SyncControlValidator,
+  ValidatorInfo
 } from '../engine.types';
 import { HooksService } from '../hooks.service';
 import {
@@ -172,10 +174,17 @@ export class FormState {
     // Avoid mutations of the original list
     const rtControls: RuntimeControl[] = cloneDeep(ctrls).map(staticCtrl => {
       const validators: ControlValidator[] = staticCtrl.controlValidators
-        ?.map(validator =>
-          this.validatorsService.controlValidators.get(validator)
-        )
+        ?.map(validator => {
+          const val = this.validatorsService.controlValidators.get(
+            validator.name
+          );
+          if (val) {
+            val.failureMessage = validator.failureMessage;
+          }
+          return val;
+        })
         .filter(validator => !!validator) as ControlValidator[];
+
       return {
         ...staticCtrl,
         validators,
@@ -249,6 +258,37 @@ export class FormState {
   }
 
   /**
+   * Get a built-in validator function.
+   *
+   * @param validatorInfo contains the name and arguments of the validator
+   */
+  private getBuiltInValidator(
+    validatorInfo: ValidatorInfo
+  ): ValidatorFn | undefined {
+    if (validatorInfo) {
+      switch (validatorInfo.name) {
+        case 'required':
+        case 'requiredTrue':
+        case 'email':
+        case 'nullValidator':
+          return Validators[validatorInfo.name];
+        case 'min':
+        case 'max':
+        case 'maxLength':
+        case 'minLength':
+        case 'pattern':
+          if (validatorInfo.args) {
+            return Validators[validatorInfo.name](validatorInfo.args[0]);
+          }
+          return undefined;
+        default:
+          return undefined;
+      }
+    }
+    return undefined;
+  }
+
+  /**
    * Interprets a RuntimeControl definition and applies an Angular validator
    * to its corresponding Angular Form Control.
    *
@@ -263,15 +303,31 @@ export class FormState {
         validator => !validator.async
       ) as SyncControlValidator[]).map(validator => {
         if (validator.builtIn) {
-          return validator.validate as ValidatorFn;
+          const controlValidator = control.controlValidators?.find(
+            cv => cv.name === validator.name
+          );
+          if (controlValidator) {
+            const validatorFn = this.getBuiltInValidator(controlValidator);
+            if (validatorFn) {
+              return validatorFn as ValidatorFn;
+            }
+          }
+          return {} as ValidatorFn;
         } else {
           return (_ac: AbstractControl) => {
             if (
               !((validator as SyncControlValidator)
                 .validate as CtrlValidatorFn)(control)
             ) {
+              const controlValidator = control.controlValidators?.find(
+                cv => cv.name === validator.name
+              );
+              let failureMessage: string | undefined = '';
+              failureMessage = controlValidator?.failureMessage;
               const errors: { [key: string]: string } = {};
-              errors[validator.failureCode] = validator.failureMessage;
+              failureMessage
+                ? (errors[validator.failureCode] = failureMessage)
+                : (errors[validator.failureCode] = '');
               return errors;
             } else {
               return null;
@@ -282,16 +338,23 @@ export class FormState {
 
       const asyncNgValidators: AsyncValidatorFn[] = (control.validators.filter(
         validator => validator.async
-      ) as AsyncControlValidator[]).map(validators => {
-        if (validators.builtIn) {
-          return validators.validate as AsyncValidatorFn;
+      ) as AsyncControlValidator[]).map(validator => {
+        if (validator.builtIn) {
+          return validator.validate as AsyncValidatorFn;
         } else {
           return (_ac: AbstractControl) => {
-            return (validators.validate as AsyncCtrlValidatorFn)(control).pipe(
+            return (validator.validate as AsyncCtrlValidatorFn)(control).pipe(
               map(valid => {
                 if (!valid) {
+                  const controlValidator = control.controlValidators?.find(
+                    cv => cv.name === validator.name
+                  );
+                  let failureMessage: string | undefined = '';
+                  failureMessage = controlValidator?.failureMessage;
                   const errors: { [key: string]: string } = {};
-                  errors[validators.failureCode] = validators.failureMessage;
+                  failureMessage
+                    ? (errors[validator.failureCode] = failureMessage)
+                    : (errors[validator.failureCode] = '');
                   return errors;
                 } else {
                   return null;

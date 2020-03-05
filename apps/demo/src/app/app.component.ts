@@ -39,7 +39,6 @@ export class AppComponent implements OnDestroy {
     this.validatorService.addValidator(
       'simpleNum',
       'simpleNum',
-      'Number must be greater or equal to 3',
       (control: RuntimeControl) => {
         return control.formControl.value >= 3;
       }

@@ -9,10 +9,37 @@ import { Control, ControlType } from '@incrudable/forms';
 export class MultiComponent {
   controlSetOne: Control[] = [
     {
+      label: 'Min & Max Num',
+      propertyName: 'minMaxNum',
+      type: ControlType.input,
+      controlValidators: [
+        {
+          name: 'min',
+          args: [5],
+          failureMessage: 'The value must be between 5 & 10'
+        },
+        {
+          name: 'max',
+          args: [10],
+          failureMessage: 'The value must be between 5 & 10'
+        },
+        {
+          name: 'pattern',
+          args: ['^(0|[1-9][0-9]*)$'],
+          failureMessage: 'The value must be a number'
+        }
+      ]
+    },
+    {
       label: 'Simple Num',
       propertyName: 'simpleNum',
       type: ControlType.input,
-      controlValidators: ['simpleNum']
+      controlValidators: [
+        {
+          name: 'simpleNum',
+          failureMessage: 'The value must be greater than or equal to 3'
+        }
+      ]
     },
     {
       label: 'Make a selection here!',
@@ -48,7 +75,9 @@ export class MultiComponent {
     },
     {
       label: 'Simple Text Input',
-      controlValidators: ['required'],
+      controlValidators: [
+        { name: 'required', failureMessage: 'A value is required' }
+      ],
       position: {
         cols: 1,
         rows: 1,
