@@ -1,8 +1,12 @@
 gridster {
-  background-color: white;
+  background-color: unset;
 }
 
-.gridster-item-content {
-  display: flex;
-  flex-direction: row;
+.gridster-item {
+  background: unset !important;
+}
+
+:host {
+  width: 100%;
+  height: 100%;
 }
