@@ -23,7 +23,9 @@ export const shippingFormControls: Control[] = [
     //  the same way a consumer would add them, that way we can treat all validators generically
     //  whether they are actual validator functions, functions that return validator functions, or Angular provided ones.
     // That way we don't have to internally manage how the inBuilt ones work with a switch or w/e
-    controlValidators: ['required'],
+    controlValidators: [
+      { name: 'required', failureMessage: 'First name is required' }
+    ],
     position: {
       x: 0,
       y: 0,
@@ -35,7 +37,9 @@ export const shippingFormControls: Control[] = [
     label: 'Last Name',
     propertyName: 'last_name',
     type: ControlType.input,
-    controlValidators: ['required'],
+    controlValidators: [
+      { name: 'required', failureMessage: 'Last name is required' }
+    ],
     position: {
       x: 1,
       y: 0,
@@ -47,7 +51,6 @@ export const shippingFormControls: Control[] = [
     label: 'Street Address',
     propertyName: 'street1',
     type: ControlType.input,
-    controlValidators: ['required'],
     position: {
       x: 0,
       y: 1,
@@ -59,7 +62,6 @@ export const shippingFormControls: Control[] = [
     label: 'Street Address 2',
     propertyName: 'street2',
     type: ControlType.input,
-    controlValidators: ['required'],
     position: {
       x: 1,
       y: 1,
@@ -75,7 +77,6 @@ export const shippingFormControls: Control[] = [
       optionSource: 'dynamic',
       optionSourceHook: 'countryOptions'
     },
-    controlValidators: ['required'],
     position: {
       x: 0,
       y: 2,
@@ -91,7 +92,6 @@ export const shippingFormControls: Control[] = [
       optionSource: 'dynamic',
       optionSourceHook: 'stateOptions'
     },
-    controlValidators: ['required'],
     position: {
       x: 1,
       y: 2,
@@ -103,7 +103,6 @@ export const shippingFormControls: Control[] = [
     label: 'City',
     propertyName: 'city',
     type: ControlType.input,
-    controlValidators: ['required'],
     position: {
       x: 0,
       y: 3,
@@ -115,7 +114,6 @@ export const shippingFormControls: Control[] = [
     label: 'ZIP Code',
     propertyName: 'zip',
     type: ControlType.input,
-    controlValidators: ['required'],
     position: {
       x: 1,
       y: 3,
