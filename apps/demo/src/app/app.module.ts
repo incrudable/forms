@@ -3,17 +3,19 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RenderersMaterialRendererModule } from '@incrudable/material-form-renderer';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DemoMatDepsModule } from './demo-mat-deps/demo-mat-deps.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    RenderersMaterialRendererModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    DemoMatDepsModule,
+    AppRoutingModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

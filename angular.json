@@ -132,6 +132,7 @@
             "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/highlight.js/styles/default.css",
               "apps/demo/src/styles.scss"
             ],
             "scripts": []
@@ -234,7 +235,7 @@
       }
     }
   },
-  "defaultProject": "forms",
+  "defaultProject": "demo",
   "cli": {
     "defaultCollection": "@nrwl/angular",
     "analytics": false

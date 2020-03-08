@@ -1,6 +1,29 @@
-<incrudable-renderer [controls]="controlSetOne"></incrudable-renderer>
-<incrudable-renderer
-  [controls]="controlSetTwo"
-  [form]="myCustomGroup"
-></incrudable-renderer>
-<incrudable-renderer [controls]="shippingFormSet"></incrudable-renderer>
+<mat-toolbar color="primary" [class.mobile-toolbar]="mobileQuery.matches">
+  <button mat-icon-button (click)="snav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Incrudable Docs</h1>
+</mat-toolbar>
+
+<mat-sidenav-container
+  [class]="mobileQuery.matches ? 'mobile-sidenav' : 'sidenav-container'"
+  [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+>
+  <mat-sidenav
+    #snav
+    [opened]="true"
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
+    [fixedInViewport]="mobileQuery.matches"
+    fixedTopGap="56"
+  >
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="nav.link" *ngFor="let nav of navLinks">
+        {{ nav.label }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet> </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
