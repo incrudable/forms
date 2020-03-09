@@ -135,7 +135,32 @@ export class FormState {
         const runTimeControls = this.genRtControls(formValues, controls);
         this.oldFormValue = formValues;
         return runTimeControls;
-      })
+      }),
+      map(controls =>
+        controls.sort((first, second) => {
+          const firstHasPosition = typeof first.position?.y === 'number';
+          const secondHasPosition = typeof second.position?.y === 'number';
+          if (firstHasPosition && !secondHasPosition) {
+            return -1;
+          } else if (secondHasPosition && !firstHasPosition) {
+            return 1;
+          } else if (!secondHasPosition && !firstHasPosition) {
+            return 0;
+          } else if (
+            typeof first.position?.y === 'number' &&
+            typeof second.position?.y === 'number'
+          ) {
+            const sameRow = first.position?.y === second.position?.y;
+            if (sameRow) {
+              return first.position.x - second.position.x;
+            } else {
+              return first.position.y - second.position.y;
+            }
+          } else {
+            return 0;
+          }
+        })
+      )
     );
   }
 

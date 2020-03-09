@@ -1,12 +1,5 @@
-gridster {
-  background-color: unset;
-}
-
-.gridster-item {
-  background: unset !important;
-}
-
-:host {
-  width: 100%;
-  height: 100%;
+.grid-host {
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
 }

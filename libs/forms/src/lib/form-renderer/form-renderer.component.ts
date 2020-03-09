@@ -94,4 +94,51 @@ export class FormRendererComponent implements OnDestroy {
   trackItems(_index: number, item: { control: RuntimeControl }) {
     return item.control.propertyName;
   }
+
+  calcStyle(controls: { control: RuntimeControl }[]) {
+    const numCols = controls.reduce((prev, currentEl: any) => {
+      if (currentEl.cols > prev) {
+        return currentEl.cols;
+      } else {
+        return prev;
+      }
+    }, 0);
+    console.log('numCols', numCols);
+    const mq = window.matchMedia('(max-width: 600px)');
+    if (mq.matches && numCols !== 0) {
+      return {
+        'grid-template-columns': `repeat(2, 1fr)`
+      };
+    } else if (numCols !== 0) {
+      return {
+        'grid-template-columns': `repeat(${numCols}, 1fr)`
+      };
+    } else {
+      return {
+        'grid-template-columns': 'unset'
+      };
+    }
+  }
+
+  calcEntryStyle(item: any) {
+    const mq = window.matchMedia('(max-width: 600px)');
+
+    if (
+      typeof item.x === 'number' &&
+      typeof item.y === 'number' &&
+      typeof item.rows === 'number' &&
+      typeof item.cols === 'number'
+    ) {
+      if (!mq.matches) {
+        return {
+          'grid-column': `${item.x + 1} / ${item.x + 1 + item.cols}`,
+          'grid-row': `${item.y + 1} / ${item.y + 1 + item.rows}`
+        };
+      } else {
+        return {
+          'grid-column': `span ${item.cols}`
+        };
+      }
+    }
+  }
 }
