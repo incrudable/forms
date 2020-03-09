@@ -1,12 +1,19 @@
-<gridster [options]="options">
-  <gridster-item
-    [item]="item"
-    *ngFor="let item of gridItems | async; trackBy: trackItems"
-  >
-    <div class="gridster-item-content">
-      <incrudable-control-picker
-        [control]="item.control"
-      ></incrudable-control-picker>
-    </div>
-  </gridster-item>
-</gridster>
+<ng-template #defaultLayout>
+  <gridster [options]="options">
+    <gridster-item
+      [item]="item"
+      *ngFor="let item of gridItems | async; trackBy: trackItems"
+    >
+      <div class="gridster-item-content">
+        <incrudable-control-picker
+          [control]="item.control"
+        ></incrudable-control-picker>
+      </div>
+    </gridster-item>
+  </gridster>
+</ng-template>
+
+<ng-container
+  *ngTemplateOutlet="(layoutRef ? layoutRef : defaultLayout);context:this"
+>
+</ng-container>

@@ -3,18 +3,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RenderersMaterialRendererModule } from '@incrudable/material-form-renderer';
 
-import { MultiComponent } from './multi.component';
-import { GridsterModule } from 'angular-gridster2';
+import { CustomLayoutComponent } from './custom-layout.component';
 
-const routes: Routes = [{ path: '', component: MultiComponent }];
+const routes: Routes = [{ path: '', component: CustomLayoutComponent }];
 
 @NgModule({
-  declarations: [MultiComponent],
+  declarations: [CustomLayoutComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    RenderersMaterialRendererModule,
-    GridsterModule
+    RenderersMaterialRendererModule
   ]
 })
-export class MultiModule {}
+export class CustomLayoutModule {}

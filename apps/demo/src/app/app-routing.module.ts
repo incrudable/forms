@@ -9,6 +9,10 @@ const routes: Routes = [
       './getting-started/getting-started.module#GettingStartedModule'
   },
   {
+    path: 'custom-layout',
+    loadChildren: './custom-layout/custom-layout.module#CustomLayoutModule'
+  },
+  {
     path: 'simple',
     loadChildren: './simple/simple.module#SimpleModule'
   },

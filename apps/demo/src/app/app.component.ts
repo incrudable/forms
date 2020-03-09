@@ -20,7 +20,8 @@ export class AppComponent implements OnDestroy {
     { label: 'Getting Started', link: 'getting-started' },
     { label: 'Simple', link: 'simple' },
     { label: 'Multi', link: 'multi' },
-    { label: 'Address', link: 'address' }
+    { label: 'Address', link: 'address' },
+    { label: 'Custom layout', link: 'custom-layout' }
   ];
   private _mobileQueryListener: () => void;
 

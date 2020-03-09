@@ -32,6 +32,7 @@ Incrudable Forms is an Angular library. As of Feb. 2019 it has been tested again
 - [Defining Custom Renderers](#defining-custom-renderers)
 - [Validators](#validators)
 - [Hooks](#hooks)
+- [Layout](#layout)
 - [Interactions](#interactions)
 - [About the Author](#about-the-author)
 - [License](#license)
@@ -514,6 +515,43 @@ const questionOptions: SelectOptions = {
   optionSource: 'dynamic',
   optionSourceHook: 'answerList'
 };
+```
+
+## Layout
+
+### Default Layout
+
+The Forms Library comes with a default layout engine based on
+[angular-gridster2](https://github.com/tiberiuzuld/angular-gridster2)
+. This layout is automatically used when using the
+incrudable-renderer component.
+
+### Alternative Layouts
+
+Coming soon
+
+### Custom Layouts
+
+If the default layout is not suitable to a particular use case it
+is super simple to provide your own. The incrudable-renderer
+component accepts a template reference as an input. If supplied
+the default layout will be replaced with the template reference.
+
+```html
+<ng-template #myLayout let-gridItems="gridItems">
+  <!-- add as much (or little) styling as you would like here... -->
+  <!-- item will contain the positioning and sizing attributes -->
+  <div *ngFor="let item of gridItems">
+    <incrudable-control-picker
+      [control]="item.control"
+    ></incrudable-control-picker>
+  </div>
+  <!--...and here-->
+</ng-template>
+<incrudable-renderer
+  [formLayout]="myLayout"
+  [controls]="controlList"
+></incrudable-renderer>
 ```
 
 ## Interactions

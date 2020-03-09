@@ -1,0 +1,16 @@
+<ng-template
+  #myLayout
+  let-options="options"
+  let-gridItems="gridItems"
+  let-trackItems="trackItems"
+>
+  <div *ngFor="let item of gridItems | async; trackBy: trackItems">
+    <incrudable-control-picker
+      [control]="item.control"
+    ></incrudable-control-picker>
+  </div>
+</ng-template>
+<incrudable-renderer
+  [formLayout]="myLayout"
+  [controls]="controlSetOne"
+></incrudable-renderer>

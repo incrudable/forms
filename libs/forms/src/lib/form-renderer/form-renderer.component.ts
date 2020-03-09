@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GridsterConfig } from 'angular-gridster2';
 import { v4 } from 'uuid';
@@ -49,6 +49,11 @@ export class FormRendererComponent implements OnDestroy {
       this.frs.setFormForInstance(this.instanceId, valueChange);
     }
   }
+
+  /**
+   * Optional template to be used in place of a default layout
+   */
+  @Input('formLayout') layoutRef: TemplateRef<any> | undefined;
 
   /**
    * Unique ID used to associate each componenet instance to a FormState
