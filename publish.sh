@@ -34,12 +34,12 @@ do
 key="$1"
 case $key in
     -v|--bump-version)
-    build="$2"
+    bumpVersion="$2"
     shift # past argument
     shift # past value
     ;;
     -i|--install)
-    build="$2"
+    install="$2"
     shift # past argument
     shift # past value
     ;;
@@ -149,19 +149,17 @@ containsElement libListing "Material Renderer"
 containsMatRenderer=$found
 
 # Grab new version numbers from user
-if [[ $bumpVersion == "y" ]] ; then
-  if [ $containsForms -eq 0 ] ; then
-    echo "New version number for Forms: "
-    read formsVersion
-  fi
-  if [ $containsMatDeps -eq 0 ] ; then
-    echo "New version number for Material Deps: "
-    read matDepsVersion
-  fi
-  if [ $containsMatRenderer -eq 0 ] ; then
-    echo "New version number for Mat Renderer: "
-    read matRendererVersion
-  fi
+if [ $containsForms -eq 0 ] ; then
+  echo "New version number for Forms: "
+  read formsVersion
+fi
+if [ $containsMatDeps -eq 0 ] ; then
+  echo "New version number for Material Deps: "
+  read matDepsVersion
+fi
+if [ $containsMatRenderer -eq 0 ] ; then
+  echo "New version number for Mat Renderer: "
+  read matRendererVersion
 fi
 
 # Determine what to install
@@ -206,32 +204,28 @@ fi
 # Install libs for material-renderer
 if [ $containsMatRenderer -eq 0 ]; then
   pushd 'libs/renderers/material-renderer'
-  if [[ $install == "y" ]] ; then
-    npm i
-  fi
+    if [[ $install == "y" ]] ; then
+      npm i
+    fi
 
-  # Set mat renderer's new version number
-  if [ $bumpVersion == "y" ]; then
-    npm version $matRendererVersion --allow-same-version
-  fi
+    # Set mat renderer's new version number
+    if [ $bumpVersion == "y" ]; then
+      npm version $matRendererVersion --allow-same-version
+    fi
 
-  if [[ $build == "y" ]] ; then
-    # perform the build
-    ng build material-form-renderer
-  fi
+    if [[ $build == "y" ]] ; then
+      # perform the build
+      ng build material-form-renderer
+    fi
   popd
 
   pushd 'dist/libs/renderers/material-renderer'
-    # Set mat renderer's new version number
-    if [ $bumpVersion == "y" ]; then
-
-      # Update the version number of its local deps
-      if [ $containsForms -eq 0 ]; then
-        sed -i "/incrudable\/forms/s/\"file:.*\"/\"$formsVersion\"/" package.json
-      fi
-      if [ $containsMatDeps -eq 0 ]; then
-        sed -i "/incrudable\/material-deps/s/\"file:.*\"/\"$matDepsVersion\"/" package.json
-      fi
+    # Update the version number of its local deps
+    if [ $containsForms -eq 0 ]; then
+      sed -i "/incrudable\/forms/s/\"file:.*\"/\"$formsVersion\"/" package.json
+    fi
+    if [ $containsMatDeps -eq 0 ]; then
+      sed -i "/incrudable\/material-deps/s/\"file:.*\"/\"$matDepsVersion\"/" package.json
     fi
   popd
 
@@ -241,16 +235,19 @@ fi
 if [[ "$publish" == 'y' ]] ; then
   if [ $containsForms -eq 0 ] ; then
     pushd 'dist/libs/forms'
+    sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
   if [ $containsMatDeps -eq 0 ] ; then
     pushd 'dist/libs/material-deps'
+    sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
   if [ $containsMatRenderer -eq 0 ] ; then
     pushd 'dist/libs/renderers/material-renderer'
+    sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
