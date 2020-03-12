@@ -12,7 +12,13 @@ export class CustomLayoutComponent {
       label: 'Simple Num',
       propertyName: 'simpleNum',
       type: ControlType.input,
-      controlValidators: ['simpleNum']
+      controlValidators: [
+        {
+          name: 'simpleNum',
+          args: [3],
+          failureMessage: 'Number must be greater or equal to 3'
+        }
+      ]
     },
     {
       label: 'Make a selection here!',
@@ -48,7 +54,9 @@ export class CustomLayoutComponent {
     },
     {
       label: 'Simple Text Input',
-      controlValidators: ['required'],
+      controlValidators: [
+        { name: 'required', failureMessage: 'Value is required' }
+      ],
       position: {
         cols: 1,
         rows: 1,

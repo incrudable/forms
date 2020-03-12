@@ -1,8 +1,8 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 import {
   FormRendererService,
-  RuntimeControl,
   ValidatorsService
 } from '@incrudable/forms';
 
@@ -40,11 +40,15 @@ export class AppComponent implements OnDestroy {
     this.validatorService.addValidator(
       'simpleNum',
       'simpleNum',
-      'Number must be greater or equal to 3',
-      (control: RuntimeControl) => {
-        return control.formControl.value >= 3;
-      }
+      this.simpleNum
     );
+  }
+
+  simpleNum(num: number): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const valid = control.value >= num;
+      return !valid ? { error: { value: control.value } } : null;
+    };
   }
 
   ngOnDestroy(): void {

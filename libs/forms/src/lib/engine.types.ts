@@ -11,12 +11,18 @@ export enum ControlType {
   radioGroup = 'radioGroup'
 }
 
+export interface ValidatorInfo {
+  name: string;
+  args?: any[];
+  failureMessage: string;
+}
+
 // Interface describing a control
 // This is the serializable definition
 // that can be be persisted to a backend
 export interface BaseControl {
   // Name(s) of validator(s) to apply to the control
-  controlValidators?: string[];
+  controlValidators?: ValidatorInfo[];
   // user friendly name that appears as a label to end users
   label: string;
   position?: GridsterItem;
@@ -100,25 +106,26 @@ export type RuntimeControl =
 
 export interface BaseControlValidator {
   name: string;
-  failureMessage: string;
+  failureMessage?: string;
   failureCode: string;
   async: boolean;
-  builtIn: boolean;
 }
 
-export type CtrlValidatorFn = (rtControl: RuntimeControl) => boolean;
+export type ValidatorFnWrapper = (...args: any[]) => ValidatorFn;
+export type AsyncValidatorFnWrapper = (...args: any[]) => AsyncValidatorFn;
+
 export type AsyncCtrlValidatorFn = (
   rtControl: RuntimeControl
 ) => Observable<boolean>;
 
 export interface SyncControlValidator extends BaseControlValidator {
   async: false;
-  validate: CtrlValidatorFn | ValidatorFn;
+  validate?: ValidatorFn | ValidatorFnWrapper;
 }
 
 export interface AsyncControlValidator extends BaseControlValidator {
   async: true;
-  validate: AsyncCtrlValidatorFn | AsyncValidatorFn;
+  validate: AsyncCtrlValidatorFn | AsyncValidatorFn | AsyncValidatorFnWrapper;
 }
 
 export type ControlValidator = SyncControlValidator | AsyncControlValidator;
