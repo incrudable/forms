@@ -6,4 +6,14 @@
     type="text"
     class="form-control"
   />
+  <ng-container *ngFor="let validator of validators">
+    <div
+      *ngIf="
+        control?.formControl.hasError(validator.failureCode) &&
+        control?.formControl.touched
+      "
+    >
+      {{ validator.failureMessage }}
+    </div>
+  </ng-container>
 </div>

@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemoMatDepsModule } from './demo-mat-deps/demo-mat-deps.module';
+import { NgBootstrapDemoModule } from './ng-bootstrap-demo/ng-bootstrap-demo.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DemoMatDepsModule } from './demo-mat-deps/demo-mat-deps.module';
     BrowserAnimationsModule,
     HttpClientModule,
     DemoMatDepsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgBootstrapDemoModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

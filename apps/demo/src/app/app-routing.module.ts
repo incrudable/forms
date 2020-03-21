@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: './address/address.module#AddressModule'
   },
   {
+    path: 'ng-bootstrap-demo',
+    loadChildren: './ng-bootstrap-demo/ng-bootstrap-demo.module#NgBootstrapDemoModule'
+  },
+  {
     path: '**',
     redirectTo: 'getting-started'
   }
