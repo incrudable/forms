@@ -23,6 +23,12 @@
     "demo-e2e": {
       "tags": [],
       "implicitDependencies": ["demo"]
+    },
+    "ng-bootstrap-renderer": {
+      "tags": ["scope:renderers", "type:ui"]
+    },
+    "ng-bootstrap-deps": {
+      "tags": ["scope:ng-bootstrap-deps", "type:ui"]
     }
   }
 }

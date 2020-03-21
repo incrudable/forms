@@ -24,7 +24,11 @@
       "@incrudable/material-deps": ["libs/material-deps/src/index.ts"],
       "@incrudable/material-form-renderer": [
         "libs/renderers/material-renderer/src/index.ts"
-      ]
+      ],
+      "@incrudable/renderers/ng-bootstrap-renderer": [
+        "libs/renderers/ng-bootstrap-renderer/src/index.ts"
+      ],
+      "@incrudable/ng-bootstrap-deps": ["libs/ng-bootstrap-deps/src/index.ts"]
     },
     "rootDir": "."
   }

@@ -117,7 +117,7 @@
         "depConstraints": [
           {
             "sourceTag": "scope:renderers",
-            "onlyDependOnLibsWithTags": ["scope:forms", "scope:material-deps"]
+            "onlyDependOnLibsWithTags": ["scope:forms", "scope:material-deps", "scope:ng-bootstrap-deps"]
           },
           {
             "sourceTag": "scope:demo",
@@ -125,6 +125,7 @@
               "scope:shared",
               "scope:form-admin",
               "scope:material-deps",
+              "scope:ng-bootstrap-deps",
               "scope:forms",
               "scope:renderers"
             ]

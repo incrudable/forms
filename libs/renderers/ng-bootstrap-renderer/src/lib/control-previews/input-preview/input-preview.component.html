@@ -1,0 +1,9 @@
+<div class="container" *ngIf="control?.formControl">
+  <label [for]="control?.propertyName">{{ control?.label }}</label>
+  <input
+    [id]="control?.propertyName"
+    [formControl]="control?.formControl"
+    type="text"
+    class="form-control"
+  />
+</div>

@@ -233,6 +233,71 @@
           }
         }
       }
+    },
+    "ng-bootstrap-renderer": {
+      "projectType": "library",
+      "root": "libs/renderers/ng-bootstrap-renderer",
+      "sourceRoot": "libs/renderers/ng-bootstrap-renderer/src",
+      "prefix": "incrudable",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/renderers/ng-bootstrap-renderer/tsconfig.lib.json",
+              "libs/renderers/ng-bootstrap-renderer/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/renderers/ng-bootstrap-renderer/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/renderers/ng-bootstrap-renderer/jest.config.js",
+            "tsConfig": "libs/renderers/ng-bootstrap-renderer/tsconfig.spec.json",
+            "setupFile": "libs/renderers/ng-bootstrap-renderer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ng-bootstrap-deps": {
+      "projectType": "library",
+      "root": "libs/ng-bootstrap-deps",
+      "sourceRoot": "libs/ng-bootstrap-deps/src",
+      "prefix": "incrudable",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ng-bootstrap-deps/tsconfig.lib.json",
+              "libs/ng-bootstrap-deps/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ng-bootstrap-deps/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ng-bootstrap-deps/jest.config.js",
+            "tsConfig": "libs/ng-bootstrap-deps/tsconfig.spec.json",
+            "setupFile": "libs/ng-bootstrap-deps/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "demo",
