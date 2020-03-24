@@ -1,0 +1,17 @@
+<div class="container">
+  <label id="radio-group-label">{{ control?.label }}</label>
+  <div *ngIf="control?.formControl" [formControl]="control?.formControl">
+    <div
+      class="form-check"
+      *ngFor="let option of control?.typeOptions?.options"
+    >
+      <label  class="form-check-label">
+        <input
+          type="radio"
+          class="form-check-input"
+          [value]="option.value"
+        />{{ option.label }}
+      </label>
+    </div>
+  </div>
+</div>

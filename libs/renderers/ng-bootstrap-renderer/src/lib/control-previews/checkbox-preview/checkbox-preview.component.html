@@ -1,0 +1,19 @@
+<div class="container">
+  <label>{{ control?.label }}</label>
+  <div class="checkbox-group container" *ngIf="control?.formControl">
+    <!-- account for both preview and live render paths -->
+    <ng-container *ngFor="let check of control?.typeOptions?.options; index as i">
+      <!-- live render -->
+      <div class="form-check"
+        *ngIf="control?.formControl?.get(check.propertyName)"
+      >
+        <label class="form-check-label"><input type="checkbox" class="form-check-input" [formControl]="control?.formControl?.get(check.propertyName)">{{ check.label }}</label>
+      </div>
+      <div class="checkbox"
+        *ngIf="!control?.formControl?.get(check.propertyName)"
+      >
+        <label><input type="checkbox">{{ check.label }}</label>
+      </div>
+    </ng-container>
+  </div>
+</div>

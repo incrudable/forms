@@ -298,6 +298,129 @@
           "styleext": "scss"
         }
       }
+    },
+    "demo-ng-bootstrap": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/demo-ng-bootstrap",
+      "sourceRoot": "apps/demo-ng-bootstrap/src",
+      "prefix": "incrudable",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/demo-ng-bootstrap",
+            "index": "apps/demo-ng-bootstrap/src/index.html",
+            "main": "apps/demo-ng-bootstrap/src/main.ts",
+            "polyfills": "apps/demo-ng-bootstrap/src/polyfills.ts",
+            "tsConfig": "apps/demo-ng-bootstrap/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/demo-ng-bootstrap/src/favicon.ico",
+              "apps/demo-ng-bootstrap/src/assets"
+            ],
+            "styles": ["apps/demo-ng-bootstrap/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo-ng-bootstrap/src/environments/environment.ts",
+                  "with": "apps/demo-ng-bootstrap/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo-ng-bootstrap:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo-ng-bootstrap:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo-ng-bootstrap:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/demo-ng-bootstrap/tsconfig.app.json",
+              "apps/demo-ng-bootstrap/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/demo-ng-bootstrap/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/demo-ng-bootstrap/jest.config.js",
+            "tsConfig": "apps/demo-ng-bootstrap/tsconfig.spec.json",
+            "setupFile": "apps/demo-ng-bootstrap/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "demo-ng-bootstrap-e2e": {
+      "root": "apps/demo-ng-bootstrap-e2e",
+      "sourceRoot": "apps/demo-ng-bootstrap-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/demo-ng-bootstrap-e2e/cypress.json",
+            "tsConfig": "apps/demo-ng-bootstrap-e2e/tsconfig.e2e.json",
+            "devServerTarget": "demo-ng-bootstrap:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo-ng-bootstrap:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/demo-ng-bootstrap-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/demo-ng-bootstrap-e2e/**"]
+          }
+        }
+      }
     }
   },
   "defaultProject": "demo",

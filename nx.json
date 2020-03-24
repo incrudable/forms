@@ -29,6 +29,13 @@
     },
     "ng-bootstrap-deps": {
       "tags": ["scope:ng-bootstrap-deps", "type:ui"]
+    },
+    "demo-ng-bootstrap": {
+      "tags": ["scope:demo", "type:app"]
+    },
+    "demo-ng-bootstrap-e2e": {
+      "tags": [],
+      "implicitDependencies": ["demo-ng-bootstrap"]
     }
   }
 }

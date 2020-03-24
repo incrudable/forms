@@ -1,0 +1,9 @@
+<div class="container">
+  <label>{{ control?.label }}</label>
+  <div class="input-group" *ngIf="control?.formControl">
+    <input [id]="control?.propertyName" class="form-control" [name]="control?.propertyName" ngbDatepicker #d="ngbDatepicker">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+    </div>
+  </div>
+</div>
