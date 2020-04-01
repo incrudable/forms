@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Control, ControlType } from '@incrudable/forms';
 
 @Component({
@@ -6,64 +6,57 @@ import { Control, ControlType } from '@incrudable/forms';
   templateUrl: './ng-bootstrap-demo.component.html',
   styleUrls: ['./ng-bootstrap-demo.component.css']
 })
-export class NgBootstrapDemoComponent implements OnInit {
-
-  controls: Control[] = [
+export class NgBootstrapDemoComponent {
+  controlSetOne: Control[] = [
     {
-      label: 'Input Test',
-      propertyName: 'input_test',
+      label: 'Simple Num',
+      propertyName: 'simpleNum',
       type: ControlType.input,
-      controlValidators: ['required'],
+      controlValidators: ['simpleNum']
+    },
+    {
+      label: 'Make a selection here!',
       position: {
+        cols: 2,
+        rows: 1,
         x: 0,
-        y: 0,
-        rows: 1,
-        cols: 1
-      }
-    },
-    {
-      label: 'Datepicker Test',
-      propertyName: 'dp_test',
-      type: ControlType.date,
-      controlValidators: ['required'],
-      position: {
-        x: 1,
-        y: 0,
-        rows: 1,
-        cols: 1
-      }
-    },
-    {
-      label: 'Check Boxes',
-      position: {
-        cols: 1,
-        rows: 1,
-        x: 1,
-        y: 0
+        y: 2
       },
-      propertyName: 'checkBoxes',
-      type: ControlType.checkGroup,
+      propertyName: 'selectInput',
+      type: ControlType.select,
       typeOptions: {
         optionSource: 'static',
         optionSourceHook: '',
         options: [
           {
-            label: 'Option 3',
-            propertyName: 'opThree',
-            value: 'op3'
+            label: 'Good',
+            propertyName: 'good',
+            value: 'good'
           },
           {
-            label: 'Option 2',
-            propertyName: 'opTwo',
-            value: 'op2'
+            label: 'Bad',
+            propertyName: 'bad',
+            value: 'bad'
           },
           {
-            label: 'Option 1',
-            propertyName: 'opOne',
-            value: 'op1'
+            label: 'Fair',
+            propertyName: 'fair',
+            value: 'fair'
           }
         ]
       }
+    },
+    {
+      label: 'Simple Text Input',
+      controlValidators: ['required'],
+      position: {
+        cols: 1,
+        rows: 1,
+        x: 0,
+        y: 0
+      },
+      propertyName: 'textInput',
+      type: ControlType.input
     },
     {
       label: 'Only one please!',
@@ -108,41 +101,61 @@ export class NgBootstrapDemoComponent implements OnInit {
       }
     },
     {
-      label: 'Make a selection here!',
+      label: 'Check Boxes',
       position: {
         cols: 1,
-        rows: 1,
+        rows: 2,
         x: 1,
-        y: 1
+        y: 0
       },
-      propertyName: 'selectInput',
-      type: ControlType.select,
+      propertyName: 'checkBoxes',
+      type: ControlType.checkGroup,
       typeOptions: {
         optionSource: 'static',
         optionSourceHook: '',
         options: [
           {
-            label: 'Good',
-            propertyName: 'good',
-            value: 'good'
+            label: 'Option 3',
+            propertyName: 'opThree',
+            value: 'op3'
           },
           {
-            label: 'Bad',
-            propertyName: 'bad',
-            value: 'bad'
+            label: 'Option 2',
+            propertyName: 'opTwo',
+            value: 'op2'
           },
           {
-            label: 'Fair',
-            propertyName: 'fair',
-            value: 'fair'
+            label: 'Option 1',
+            propertyName: 'opOne',
+            value: 'op1'
           }
         ]
       }
     },
+    {
+      label: 'A Date Picker',
+      position: {
+        cols: 1,
+        rows: 1,
+        x: 0,
+        y: 1
+      },
+      propertyName: 'dateInput',
+      type: ControlType.date
+    },
+    {
+      label: 'A Time Picker',
+      position: {
+        cols: 1,
+        rows: 1,
+        x: 0,
+        y: 3
+      },
+      propertyName: 'timeInput',
+      type: ControlType.time,
+      typeOptions: {
+        format: 24
+      }
+    }
   ];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 }

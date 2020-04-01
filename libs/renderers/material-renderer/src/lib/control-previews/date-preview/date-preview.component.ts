@@ -8,4 +8,5 @@ import { DateRunTimeControl } from '@incrudable/forms';
 })
 export class DatePreviewComponent {
   @Input() control?: DateRunTimeControl;
+
 }

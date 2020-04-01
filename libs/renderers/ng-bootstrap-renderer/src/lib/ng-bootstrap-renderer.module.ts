@@ -9,28 +9,31 @@ import { DatePreviewComponent } from './control-previews/date-preview/date-previ
 import { InputPreviewComponent } from './control-previews/input-preview/input-preview.component';
 import { RadioPreviewComponent } from './control-previews/radio-preview/radio-preview.component';
 import { SelectPreviewComponent } from './control-previews/select-preview/select-preview.component';
+import { TimePreviewComponent } from './control-previews/time-preview/time-preview.component';
 
 const controls: ControlMapping = {
   input: { control: InputPreviewComponent },
-  date: { control: DatePreviewComponent },
-  checkGroup: { control: CheckboxPreviewComponent },
+  select: { control: SelectPreviewComponent },
   radioGroup: { control: RadioPreviewComponent },
-  select: { control: SelectPreviewComponent }
+  checkGroup: { control: CheckboxPreviewComponent },
+  date: { control: DatePreviewComponent },
+  time: { control: TimePreviewComponent }
 };
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormEngineModule.forRoot(controls),
     NgBootstrapDepsModule,
-    ReactiveFormsModule
   ],
   declarations: [
     InputPreviewComponent,
     DatePreviewComponent,
     CheckboxPreviewComponent,
     RadioPreviewComponent,
-    SelectPreviewComponent
+    SelectPreviewComponent,
+    TimePreviewComponent
   ],
   exports: [FormEngineModule]
 })
