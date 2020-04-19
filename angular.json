@@ -233,6 +233,37 @@
           }
         }
       }
+    },
+    "rest": {
+      "projectType": "library",
+      "root": "libs/rest",
+      "sourceRoot": "libs/rest/src",
+      "prefix": "incrudable",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/rest/tsconfig.lib.json",
+              "libs/rest/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/rest/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/rest/jest.config.js",
+            "tsConfig": "libs/rest/tsconfig.spec.json",
+            "setupFile": "libs/rest/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "defaultProject": "demo",

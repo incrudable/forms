@@ -108,7 +108,7 @@ PS3='Please select libs to publish: '
 while :
 do
     clear
-    options=("Forms ${opts[0]}" "Material Deps ${opts[1]}" "Material Renderer ${opts[2]}" "Done")
+    options=("Forms ${opts[0]}" "Material Deps ${opts[1]}" "Material Renderer ${opts[2]}" "Rest ${opts[3]}" "Done")
     select opt in "${options[@]}"
     do
         case $opt in
@@ -122,6 +122,10 @@ do
                 ;;
             "Material Renderer ${opts[2]}")
                 choice 2
+                break
+                ;;
+            "Material Renderer ${opts[3]}")
+                choice 3
                 break
                 ;;
             "Done")
@@ -147,6 +151,8 @@ containsElement libListing "Material Deps"
 containsMatDeps=$found
 containsElement libListing "Material Renderer"
 containsMatRenderer=$found
+containsElement libListing "Rest"
+containsRest=$found
 
 # Grab new version numbers from user
 if [ $containsForms -eq 0 ] ; then
@@ -160,6 +166,10 @@ fi
 if [ $containsMatRenderer -eq 0 ] ; then
   echo "New version number for Mat Renderer: "
   read matRendererVersion
+fi
+if [ $containsRest -eq 0 ] ; then
+  echo "New version number for Rest: "
+  read restVersion
 fi
 
 # Determine what to install
@@ -179,6 +189,23 @@ if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
 
   if [[ $build == "y" ]] ; then
     ng build forms
+  fi
+  popd
+fi
+
+# If lib list contains rest
+# Install libs for rest
+if [[ $containsRest -eq 0 ]] ; then
+  pushd 'libs/rest'
+  if [[ $install == "y" ]] ; then
+    npm i
+  fi
+  # While we are here bump mat deps version number and build
+  if [[ $containsRest -eq 0 && $bumpVersion == "y" ]] ; then
+    npm version $restVersion --allow-same-version
+  fi
+  if [[ $build == "y" ]] ; then
+    ng build rest
   fi
   popd
 fi
@@ -247,6 +274,12 @@ if [[ "$publish" == 'y' ]] ; then
   fi
   if [ $containsMatRenderer -eq 0 ] ; then
     pushd 'dist/libs/renderers/material-renderer'
+    sed -i "/prepublishOnly/d" package.json
+    npm publish
+    popd
+  fi
+  if [ $containsRest -eq 0 ] ; then
+    pushd 'dist/libs/rest'
     sed -i "/prepublishOnly/d" package.json
     npm publish
     popd

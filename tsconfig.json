@@ -24,7 +24,8 @@
       "@incrudable/material-deps": ["libs/material-deps/src/index.ts"],
       "@incrudable/material-form-renderer": [
         "libs/renderers/material-renderer/src/index.ts"
-      ]
+      ],
+      "@incrudable/rest": ["libs/rest/src/index.ts"]
     },
     "rootDir": "."
   }

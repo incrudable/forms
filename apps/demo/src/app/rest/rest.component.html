@@ -1,0 +1,8 @@
+<button (click)="employees.refresh()">Refresh!</button>
+<button (click)="addOne()">add one</button>
+<button (click)="addItSimple()">add simple</button>
+<h1 *ngIf="employees.listLoading | async">Employees loading...</h1>
+<h1 *ngIf="colors.listLoading | async">Colors loading...</h1>
+<ul>
+  <li *ngFor="let emp of colors.list | async">{{ emp | json }}</li>
+</ul>
