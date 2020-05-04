@@ -138,25 +138,35 @@ export enum FormHookUpdateOn {
   ControlChanges
 }
 
-export type FormHookRequest = (form: any) => Observable<any>;
+// Hooks need to support any form structure supplied by
+// users of the libraries. They are also a generic mechanism.
+// So we cannot determine what comes back, but we can use
+// a generic type
+export type FormHookRequest<T> = (form: any) => Observable<T>;
 
-export interface FormHookBase {
-  request: FormHookRequest;
+// Works with FormHookRequest type to provide additional
+// meta data associated with the request function. Used as part of the
+// internal definition
+export interface FormHookBase<T> {
+  request: FormHookRequest<T>;
   updateOn: FormHookUpdateOn;
 }
 
-export interface UpdateOnAllChangesFormHook extends FormHookBase {
+export interface UpdateOnAllChangesFormHook<T> extends FormHookBase<T> {
   updateOn: FormHookUpdateOn.AllChanges;
 }
 
-export interface UpdateOnControlChangeFormHook extends FormHookBase {
+export interface UpdateOnControlChangeFormHook<T> extends FormHookBase<T> {
   updateOn: FormHookUpdateOn.ControlChanges;
   control: string | string[];
 }
 
-export type FormHook =
-  | UpdateOnAllChangesFormHook
-  | UpdateOnControlChangeFormHook;
+export type FormHook<T> =
+  | UpdateOnAllChangesFormHook<T>
+  | UpdateOnControlChangeFormHook<T>;
+
+// Used to simplify the type name of the registry
+export type HookEntry<T> = Map<string, FormHook<T>>;
 
 export interface ControlMappingEntry {
   control?: any; // Component for rendering this type of control
@@ -166,3 +176,4 @@ export interface ControlMappingEntry {
 }
 
 export type ControlMapping = { [K in ControlType]?: ControlMappingEntry };
+

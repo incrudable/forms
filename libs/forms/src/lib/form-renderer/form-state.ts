@@ -205,7 +205,7 @@ export class FormState {
     form: any,
     control: RuntimeControl
   ): Observable<RuntimeControl> {
-    let optionListHook: FormHook | undefined;
+    let optionListHook: FormHook<Option[]> | undefined;
     // Currently only selects, radio groups, & check groups have dynamic options (hooks)
     if (
       (isSelectRuntimeControl(control) ||

@@ -1,33 +1,33 @@
 import { Injectable } from '@angular/core';
 
-import { FormHook, FormHookRequest, FormHookUpdateOn } from './engine.types';
+import { FormHook, FormHookRequest, FormHookUpdateOn, HookEntry } from './engine.types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HooksService {
-  private formHooks: Map<string, FormHook> = new Map();
+  private formHooks: HookEntry<unknown> = new Map();
 
-  getHook(name: string) {
-    return this.formHooks.get(name);
+  getHook<T>(name: string) {
+    return this.formHooks.get(name) as FormHook<T>;
   }
 
   getHookEntries() {
     return this.formHooks.entries();
   }
 
-  setHook(name: string, request: FormHookRequest): void;
+  setHook<T>(name: string, request: FormHookRequest<T>): void;
 
-  setHook(
+  setHook<T>(
     name: string,
-    request: FormHookRequest,
+    request: FormHookRequest<T>,
     updateOn: FormHookUpdateOn.ControlChanges,
     control: string
   ): void;
 
-  setHook(
+  setHook<T>(
     name: string,
-    request: FormHookRequest,
+    request: FormHookRequest<T>,
     updateOn: FormHookUpdateOn = FormHookUpdateOn.AllChanges,
     control?: string | string[]
   ) {
