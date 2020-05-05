@@ -124,12 +124,12 @@ do
                 choice 2
                 break
                 ;;
-            "Material Renderer ${opts[3]}")
+            "Rest ${opts[3]}")
                 choice 3
                 break
                 ;;
             "Done")
-                break 2
+                break 3
                 ;;
             *) printf '%s\n' 'invalid option';;
         esac
