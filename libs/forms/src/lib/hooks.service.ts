@@ -8,6 +8,10 @@ import { FormHook, FormHookRequest, FormHookUpdateOn, HookEntry } from './engine
 export class HooksService {
   private formHooks: HookEntry<unknown> = new Map();
 
+  clearHooks(){
+    this.formHooks = new Map();
+  }
+
   getHook<T>(name: string) {
     return this.formHooks.get(name) as FormHook<T>;
   }
