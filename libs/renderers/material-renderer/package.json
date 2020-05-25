@@ -1,13 +1,10 @@
 {
   "name": "@incrudable/material-form-renderer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "peerDependencies": {
-    "@angular/common": "~9.0.0",
-    "@angular/core": "~9.0.0",
-    "@angular/forms": "~9.0.0"
-  },
-  "dependencies": {
-    "@incrudable/forms": "file:../../../dist/libs/forms",
-    "@incrudable/material-deps": "file:../../../dist/libs/material-deps"
+    "@angular/common": "^9.10",
+    "@angular/core": "^9.10",
+    "@angular/forms": "^9.10",
+    "tslib": "^1.10.0"
   }
 }

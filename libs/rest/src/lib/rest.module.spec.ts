@@ -1,4 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
+
 import { RestModule } from './rest.module';
 
 describe('RestModule', () => {

@@ -6,7 +6,7 @@ describe('FormRendererService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FormRendererService = TestBed.get(FormRendererService);
+    const service: FormRendererService = TestBed.inject(FormRendererService);
     expect(service).toBeTruthy();
   });
 });

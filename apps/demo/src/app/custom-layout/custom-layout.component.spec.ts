@@ -8,9 +8,8 @@ describe('CustomLayoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CustomLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [CustomLayoutComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

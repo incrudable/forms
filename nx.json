@@ -2,7 +2,10 @@
   "npmScope": "incrudable",
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.json": "*",
     "tslint.json": "*",
     "nx.json": "*"
@@ -17,15 +20,23 @@
     "material-form-renderer": {
       "tags": ["scope:renderers", "type:ui"]
     },
+    "rest": {
+      "tags": ["scope:rest", "type:util"]
+    },
     "demo": {
       "tags": ["scope:demo", "type:app"]
     },
     "demo-e2e": {
       "tags": [],
       "implicitDependencies": ["demo"]
-    },
-    "rest": {
-      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
   }
 }

@@ -176,4 +176,3 @@ export interface ControlMappingEntry {
 }
 
 export type ControlMapping = { [K in ControlType]?: ControlMappingEntry };
-

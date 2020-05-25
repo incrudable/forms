@@ -23,7 +23,8 @@ const routes: Routes = [
   {
     path: 'address',
     loadChildren: './address/address.module#AddressModule'
-  },{
+  },
+  {
     path: 'rest',
     loadChildren: './rest/rest.module#RestModule'
   },

@@ -8,9 +8,8 @@ describe('DynamicHtmlHostComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DynamicHtmlHostComponent ]
-    })
-    .compileComponents();
+      declarations: [DynamicHtmlHostComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

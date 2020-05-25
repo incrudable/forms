@@ -15,7 +15,13 @@
     "ordered-imports": [
       true,
       {
-        "grouped-imports": true
+        "grouped-imports": true,
+        "groups": [
+          "^@(?!incrudable).*|^[a-zA-Z].*",
+          "^@incrudable.*",
+          "^\\.\\./",
+          "^\\./.*"
+        ]
       }
     ],
     "arrow-return-shorthand": true,
@@ -66,7 +72,6 @@
     "no-trailing-whitespace": true,
     "no-unnecessary-initializer": true,
     "no-unused-expression": true,
-    "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
     "one-line": [
@@ -118,15 +123,10 @@
           {
             "sourceTag": "scope:renderers",
             "onlyDependOnLibsWithTags": ["scope:forms", "scope:material-deps"]
-          },
-          {
+          },{
             "sourceTag": "scope:demo",
             "onlyDependOnLibsWithTags": [
-              "scope:shared",
-              "scope:form-admin",
-              "scope:material-deps",
-              "scope:forms",
-              "scope:renderers"
+              "*"
             ]
           }
         ]

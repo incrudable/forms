@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { FormHook, FormHookRequest, FormHookUpdateOn, HookEntry } from './engine.types';
+import {
+  FormHook,
+  FormHookRequest,
+  FormHookUpdateOn,
+  HookEntry
+} from './engine.types';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +13,7 @@ import { FormHook, FormHookRequest, FormHookUpdateOn, HookEntry } from './engine
 export class HooksService {
   private formHooks: HookEntry<unknown> = new Map();
 
-  clearHooks(){
+  clearHooks() {
     this.formHooks = new Map();
   }
 

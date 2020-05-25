@@ -17,11 +17,6 @@ publish="y"
 # Turning this off may be helpful if script errors out in later steps
 build="y"
 
-# Run a fresh npm i install before building/publishing
-# Turning this off may be helpful when you know your deps are updated
-# or you want to use a different dep client
-install="y"
-
 # Modify the version number before publishing
 # Turning this off may be helpful if a previous deploy failed, but
 # the deployment number is still set from the previous run
@@ -35,11 +30,6 @@ key="$1"
 case $key in
     -v|--bump-version)
     bumpVersion="$2"
-    shift # past argument
-    shift # past value
-    ;;
-    -i|--install)
-    install="$2"
     shift # past argument
     shift # past value
     ;;
@@ -172,89 +162,65 @@ if [ $containsRest -eq 0 ] ; then
   read restVersion
 fi
 
-# Determine what to install
-# If lib list contains forms or material-renderer
-# Install libs for forms
 npm i
 
+# If lib list contains forms or material-renderer
 if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   pushd 'libs/forms'
-  if [[ $install == "y" ]] ; then
-    npm i
-  fi
-    # While we are here, bump forms version number and build
+
+  # bump forms version number and build
   if [[ $containsForms -eq 0 && $bumpVersion == "y" ]] ; then
     npm version $formsVersion --allow-same-version
   fi
 
-  if [[ $build == "y" ]] ; then
-    ng build forms
-  fi
   popd
+  if [[ $build == "y" ]] ; then
+    nx build forms --prod
+  fi
 fi
 
 # If lib list contains rest
-# Install libs for rest
 if [[ $containsRest -eq 0 ]] ; then
   pushd 'libs/rest'
-  if [[ $install == "y" ]] ; then
-    npm i
-  fi
+
   # While we are here bump mat deps version number and build
   if [[ $containsRest -eq 0 && $bumpVersion == "y" ]] ; then
     npm version $restVersion --allow-same-version
   fi
-  if [[ $build == "y" ]] ; then
-    ng build rest
-  fi
   popd
+  if [[ $build == "y" ]] ; then
+    nx build rest --prod
+  fi
 fi
 
 # If lib list contains mat-deps or material-renderer
-# Intall libs for mat-deps
 if [[ $containsMatDeps -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   pushd 'libs/material-deps'
-  if [[ $install == "y" ]] ; then
-    npm i
-  fi
+
   # While we are here bump mat deps version number and build
   if [[ $containsMatDeps -eq 0 && $bumpVersion == "y" ]] ; then
     npm version $matDepsVersion --allow-same-version
   fi
-  if [[ $build == "y" ]] ; then
-    ng build material-deps
-  fi
   popd
+  if [[ $build == "y" ]] ; then
+    nx build material-deps --prod
+  fi
 fi
 
 # if lib list contains material-renderer
-# Install libs for material-renderer
 if [ $containsMatRenderer -eq 0 ]; then
   pushd 'libs/renderers/material-renderer'
-    if [[ $install == "y" ]] ; then
-      npm i
-    fi
 
     # Set mat renderer's new version number
     if [ $bumpVersion == "y" ]; then
       npm version $matRendererVersion --allow-same-version
     fi
 
-    if [[ $build == "y" ]] ; then
-      # perform the build
-      ng build material-form-renderer
-    fi
   popd
-
-  pushd 'dist/libs/renderers/material-renderer'
-    # Update the version number of its local deps
-    if [ $containsForms -eq 0 ]; then
-      sed -i "/incrudable\/forms/s/\"file:.*\"/\"$formsVersion\"/" package.json
-    fi
-    if [ $containsMatDeps -eq 0 ]; then
-      sed -i "/incrudable\/material-deps/s/\"file:.*\"/\"$matDepsVersion\"/" package.json
-    fi
-  popd
+  if [[ $build == "y" ]] ; then
+    # perform the build
+    nx build material-form-renderer --prod
+  fi
 
 fi
 
@@ -262,25 +228,29 @@ fi
 if [[ "$publish" == 'y' ]] ; then
   if [ $containsForms -eq 0 ] ; then
     pushd 'dist/libs/forms'
-    sed -i "/prepublishOnly/d" package.json
+    # Uncomment the following line if you want to force a publish with Ivy
+    # sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
   if [ $containsMatDeps -eq 0 ] ; then
     pushd 'dist/libs/material-deps'
-    sed -i "/prepublishOnly/d" package.json
+    # Uncomment the following line if you want to force a publish with Ivy
+    # sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
   if [ $containsMatRenderer -eq 0 ] ; then
     pushd 'dist/libs/renderers/material-renderer'
-    sed -i "/prepublishOnly/d" package.json
+    # Uncomment the following line if you want to force a publish with Ivy
+    # sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi
   if [ $containsRest -eq 0 ] ; then
     pushd 'dist/libs/rest'
-    sed -i "/prepublishOnly/d" package.json
+    # Uncomment the following line if you want to force a publish with Ivy
+    # sed -i "/prepublishOnly/d" package.json
     npm publish
     popd
   fi

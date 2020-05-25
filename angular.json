@@ -10,10 +10,15 @@
       "prefix": "incrudable",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/forms/tsconfig.lib.json",
             "project": "libs/forms/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -44,10 +49,15 @@
       "prefix": "mat-deps",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/material-deps/tsconfig.lib.json",
             "project": "libs/material-deps/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
           }
         },
         "test": {
@@ -78,10 +88,15 @@
       "prefix": "incrudable",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/renderers/material-renderer/tsconfig.lib.json",
             "project": "libs/renderers/material-renderer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
@@ -202,7 +217,8 @@
           "options": {
             "jestConfig": "apps/demo/jest.config.js",
             "tsConfig": "apps/demo/tsconfig.spec.json",
-            "setupFile": "apps/demo/src/test-setup.ts"
+            "setupFile": "apps/demo/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       }
@@ -241,10 +257,15 @@
       "prefix": "incrudable",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/rest/tsconfig.lib.json",
             "project": "libs/rest/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+            }
           }
         },
         "lint": {
@@ -262,7 +283,8 @@
           "options": {
             "jestConfig": "libs/rest/jest.config.js",
             "tsConfig": "libs/rest/tsconfig.spec.json",
-            "setupFile": "libs/rest/src/test-setup.ts"
+            "setupFile": "libs/rest/src/test-setup.ts",
+            "passWithNoTests": true
           }
         }
       },
@@ -285,9 +307,6 @@
     },
     "@nrwl/angular:library": {
       "unitTestRunner": "jest"
-    },
-    "@nrwl/schematics:node-application": {
-      "framework": "express"
     }
   }
 }

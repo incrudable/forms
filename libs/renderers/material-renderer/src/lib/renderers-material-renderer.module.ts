@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+
 import { ControlMapping, FormEngineModule } from '@incrudable/forms';
 import { MaterialDepsModule } from '@incrudable/material-deps';
 
@@ -17,15 +18,24 @@ const controls: ControlMapping = {
   radioGroup: { control: RadioPreviewComponent },
   checkGroup: { control: CheckboxPreviewComponent },
   date: { control: DatePreviewComponent },
-  time: { control: TimePreviewComponent }
+  time: { control: TimePreviewComponent },
 };
+
+const controlList = [
+  InputPreviewComponent,
+  SelectPreviewComponent,
+  RadioPreviewComponent,
+  CheckboxPreviewComponent,
+  DatePreviewComponent,
+  TimePreviewComponent,
+];
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormEngineModule.forRoot(controls),
-    MaterialDepsModule
+    FormEngineModule.forRoot(controls, controlList),
+    MaterialDepsModule,
   ],
   declarations: [
     InputPreviewComponent,
@@ -33,8 +43,8 @@ const controls: ControlMapping = {
     RadioPreviewComponent,
     CheckboxPreviewComponent,
     DatePreviewComponent,
-    TimePreviewComponent
+    TimePreviewComponent,
   ],
-  exports: [FormEngineModule]
+  exports: [FormEngineModule],
 })
 export class RenderersMaterialRendererModule {}

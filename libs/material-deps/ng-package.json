@@ -4,7 +4,5 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "whitelistedNonPeerDependencies": [
-    "ngx-material-timepicker"
-  ]
+  "whitelistedNonPeerDependencies": ["ngx-material-timepicker"]
 }

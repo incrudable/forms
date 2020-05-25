@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+
 import {
   FormRendererService,
   RuntimeControl,
@@ -22,7 +23,7 @@ export class AppComponent implements OnDestroy {
     { label: 'Multi', link: 'multi' },
     { label: 'Address', link: 'address' },
     { label: 'Custom layout', link: 'custom-layout' },
-    { label: 'Rest', link: 'rest'}
+    { label: 'Rest', link: 'rest' }
   ];
   private _mobileQueryListener: () => void;
 

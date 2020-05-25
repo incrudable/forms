@@ -1,6 +1,6 @@
 {
   "name": "@incrudable/rest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "dependencies": {},
   "peerDependencies": {
     "@angular/common": "^9.0.0",

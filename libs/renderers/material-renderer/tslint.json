@@ -3,5 +3,8 @@
   "rules": {
     "directive-selector": [true, "attribute", "ngxForms", "camelCase"],
     "component-selector": [true, "element", "incrudable", "kebab-case"]
+  },
+  "linterOptions": {
+    "exclude": ["!**/*"]
   }
 }
