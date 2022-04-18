@@ -175,7 +175,7 @@ if [[ $containsForms -eq 0 || $containsMatRenderer -eq 0 ]] ; then
 
   popd
   if [[ $build == "y" ]] ; then
-    nx build forms --prod
+    npm run nx build forms -- --prod
   fi
 fi
 
@@ -189,7 +189,7 @@ if [[ $containsRest -eq 0 ]] ; then
   fi
   popd
   if [[ $build == "y" ]] ; then
-    nx build rest --prod
+    npm run nx build rest -- --prod
   fi
 fi
 
@@ -203,13 +203,13 @@ if [[ $containsMatDeps -eq 0 || $containsMatRenderer -eq 0 ]] ; then
   fi
   popd
   if [[ $build == "y" ]] ; then
-    nx build material-deps --prod
+    npm run nx build material-deps -- --prod
   fi
 fi
 
 # if lib list contains material-renderer
 if [ $containsMatRenderer -eq 0 ]; then
-  pushd 'libs/renderers/material-renderer'
+  pushd 'libs/renderers/material-form-renderer'
 
     # Set mat renderer's new version number
     if [ $bumpVersion == "y" ]; then
@@ -219,7 +219,7 @@ if [ $containsMatRenderer -eq 0 ]; then
   popd
   if [[ $build == "y" ]] ; then
     # perform the build
-    nx build material-form-renderer --prod
+    npm run nx build renderers-material-form-renderer -- --prod
   fi
 
 fi
@@ -241,7 +241,7 @@ if [[ "$publish" == 'y' ]] ; then
     popd
   fi
   if [ $containsMatRenderer -eq 0 ] ; then
-    pushd 'dist/libs/renderers/material-renderer'
+    pushd 'dist/libs/renderers/material-form-renderer'
     # Uncomment the following line if you want to force a publish with Ivy
     # sed -i "/prepublishOnly/d" package.json
     npm publish

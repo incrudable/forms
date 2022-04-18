@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridsterModule } from 'angular-gridster2';
 import { DynamicModule } from 'ng-dynamic-component';
@@ -24,16 +24,13 @@ import { FormRendererComponent } from './form-renderer/form-renderer.component';
   ],
 })
 export class FormEngineModule {
-  static forRoot(controlMap: ControlMapping, controlList: any[]) {
+  static forRoot(
+    controlMap: ControlMapping,
+    controlList: any[]
+  ): ModuleWithProviders<FormEngineModule> {
     return {
       ngModule: FormEngineModule,
-      providers: [
-        { provide: ControlMappingToken, useValue: controlMap },
-        // {
-        //   useValue: [...controlList, DynamicHtmlHostComponent],
-        //   multi: true,
-        // },
-      ],
+      providers: [{ provide: ControlMappingToken, useValue: controlMap }],
     };
   }
 }
