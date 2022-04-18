@@ -1,0 +1,39 @@
+{
+  "projectType": "library",
+  "root": "libs/rest",
+  "sourceRoot": "libs/rest/src",
+  "prefix": "incrudable",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/rest"],
+      "options": {
+        "project": "libs/rest/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/rest/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/rest/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/rest"],
+      "options": {
+        "jestConfig": "libs/rest/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/rest/src/**/*.ts", "libs/rest/src/**/*.html"]
+      }
+    }
+  },
+  "tags": ["scope:rest", "type:util"]
+}

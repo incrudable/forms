@@ -5,28 +5,27 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'getting-started',
-    loadChildren:
-      './getting-started/getting-started.module#GettingStartedModule'
+    loadChildren: () => import('./getting-started/getting-started.module').then(m => m.GettingStartedModule)
   },
   {
     path: 'custom-layout',
-    loadChildren: './custom-layout/custom-layout.module#CustomLayoutModule'
+    loadChildren: () => import('./custom-layout/custom-layout.module').then(m => m.CustomLayoutModule)
   },
   {
     path: 'simple',
-    loadChildren: './simple/simple.module#SimpleModule'
+    loadChildren: () => import('./simple/simple.module').then(m => m.SimpleModule)
   },
   {
     path: 'multi',
-    loadChildren: './multi/multi.module#MultiModule'
+    loadChildren: () => import('./multi/multi.module').then(m => m.MultiModule)
   },
   {
     path: 'address',
-    loadChildren: './address/address.module#AddressModule'
+    loadChildren: () => import('./address/address.module').then(m => m.AddressModule)
   },
   {
     path: 'rest',
-    loadChildren: './rest/rest.module#RestModule'
+    loadChildren: () => import('./rest/rest.module').then(m => m.RestModule)
   },
   {
     path: '**',

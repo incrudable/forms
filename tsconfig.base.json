@@ -1,0 +1,27 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@incrudable/forms": ["libs/forms/src/index.ts"],
+      "@incrudable/material-deps": ["libs/material-deps/src/index.ts"],
+      "@incrudable/material-form-renderer": [
+        "libs/renderers/material-form-renderer/src/index.ts"
+      ],
+      "@incrudable/rest": ["libs/rest/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

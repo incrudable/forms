@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/material-deps",
+  "sourceRoot": "libs/material-deps/src",
+  "prefix": "incrudable",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/material-deps"],
+      "options": {
+        "project": "libs/material-deps/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/material-deps/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/material-deps/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/material-deps"],
+      "options": {
+        "jestConfig": "libs/material-deps/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/material-deps/src/**/*.ts",
+          "libs/material-deps/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:material-deps", "type:ui"]
+}

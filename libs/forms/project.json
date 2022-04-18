@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/forms",
+  "sourceRoot": "libs/forms/src",
+  "prefix": "incrudable",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/forms"],
+      "options": {
+        "project": "libs/forms/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/forms/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/forms/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/forms"],
+      "options": {
+        "jestConfig": "libs/forms/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/forms/src/**/*.ts",
+          "libs/forms/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:forms", "type:feature"]
+}

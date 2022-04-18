@@ -30,7 +30,7 @@ export class IndividualRep<T> {
 }
 
 export class EntityRep<T> {
-  private refreshTrigger = new Subject();
+  private refreshTrigger = new Subject<void>();
   private staleTrigger = new Subject<LoadFeed<unknown>>();
   private internalTrigger = this.staleTrigger.pipe(switchMap(feed => feed));
   private dataChangeTriggers: LoadFeed<unknown>;

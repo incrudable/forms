@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/renderers/material-form-renderer",
+  "sourceRoot": "libs/renderers/material-form-renderer/src",
+  "prefix": "incrudable",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/renderers/material-form-renderer"],
+      "options": {
+        "project": "libs/renderers/material-form-renderer/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/renderers/material-form-renderer/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/renderers/material-form-renderer/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/renderers/material-form-renderer"],
+      "options": {
+        "jestConfig": "libs/renderers/material-form-renderer/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/renderers/material-form-renderer/src/**/*.ts",
+          "libs/renderers/material-form-renderer/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["scope:renderers", "type:ui"]
+}
