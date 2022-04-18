@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/rest",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": []
 }
