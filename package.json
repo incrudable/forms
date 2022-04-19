@@ -27,7 +27,6 @@
     "angular-gridster2": "^13.2.1",
     "highlight.js": "^11.5.1",
     "lodash": "^4.17.21",
-    "ng-dynamic-component": "^10.1.0",
     "ngx-material-timepicker": "^5.5.3",
     "ngx-showdown": "^6.0.0",
     "rxjs": "~7.4.0",

@@ -2,17 +2,16 @@ import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GridsterModule } from 'angular-gridster2';
-import { DynamicModule } from 'ng-dynamic-component';
 
 import { ControlMappingToken } from './control-mapping.injection-token';
 import { ControlPickerComponent } from './control-picker/control-picker.component';
-import { DynamicHtmlHostComponent } from './dynamic-html-host/dynamic-html-host.component';
+import { CompHostDirective } from './control-picker/control-picker.component';
 import { DynamicHtmlHostModule } from './dynamic-html-host/dynamic-html-host.module';
 import { ControlMapping } from './engine.types';
 import { FormRendererComponent } from './form-renderer/form-renderer.component';
 
 @NgModule({
-  declarations: [FormRendererComponent, ControlPickerComponent],
+  declarations: [FormRendererComponent, ControlPickerComponent, CompHostDirective],
   exports: [FormRendererComponent, ControlPickerComponent],
   imports: [
     CommonModule,
@@ -20,13 +19,11 @@ import { FormRendererComponent } from './form-renderer/form-renderer.component';
     FormsModule,
     ReactiveFormsModule,
     DynamicHtmlHostModule,
-    DynamicModule,
   ],
 })
 export class FormEngineModule {
   static forRoot(
-    controlMap: ControlMapping,
-    controlList: any[]
+    controlMap: ControlMapping
   ): ModuleWithProviders<FormEngineModule> {
     return {
       ngModule: FormEngineModule,
