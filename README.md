@@ -541,7 +541,7 @@ the default layout will be replaced with the template reference.
 <ng-template #myLayout let-gridItems="gridItems">
   <!-- add as much (or little) styling as you would like here... -->
   <!-- item will contain the positioning and sizing attributes -->
-  <div *ngFor="let item of gridItems">
+  <div *ngFor="let item of gridItems | async">
     <incrudable-control-picker
       [control]="item.control"
     ></incrudable-control-picker>
@@ -563,7 +563,7 @@ Interactions are still a work in progress
 
 ## More Examples
 
-More examples can be found in the repository under 
+More examples can be found in the repository under
 [/apps/demo application](https://github.com/incrudable/forms/tree/master/apps/demo/src/app)
 . Additionally, an additional minimal example can be found [here](https://github.com/dpsthree/demo-form).
 This example is used as a sanity check that they deployed bundles are valid.
