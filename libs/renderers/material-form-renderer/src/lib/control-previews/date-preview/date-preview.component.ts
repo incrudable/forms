@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { DateRunTimeControl } from '@incrudable/forms';
+import { DateRuntimeControl } from '@incrudable/forms';
 
 @Component({
   selector: 'incrudable-date-preview',
@@ -8,5 +8,5 @@ import { DateRunTimeControl } from '@incrudable/forms';
   styleUrls: ['./date-preview.component.css']
 })
 export class DatePreviewComponent {
-  @Input() control?: DateRunTimeControl;
+  @Input() control?: DateRuntimeControl;
 }
