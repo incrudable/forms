@@ -83,18 +83,18 @@ export interface BaseRuntimeControl extends BaseControl {
   validators: ControlValidator[];
 }
 
-export type InputRunTimeControl = BaseRuntimeControl & InputControl;
+export type InputRuntimeControl = BaseRuntimeControl & InputControl;
 export type SelectRuntimeControl = BaseRuntimeControl & SelectControl;
-export type DateRunTimeControl = BaseRuntimeControl & DateControl;
-export type TimeRunTimeControl = BaseRuntimeControl & TimeControl;
+export type DateRuntimeControl = BaseRuntimeControl & DateControl;
+export type TimeRuntimeControl = BaseRuntimeControl & TimeControl;
 export type CheckGroupRuntimeControl = BaseRuntimeControl & CheckGroupControl;
 export type RadioGroupRuntimeControl = BaseRuntimeControl & RadioGroupControl;
 
 export type RuntimeControl =
-  | InputRunTimeControl
+  | InputRuntimeControl
   | SelectRuntimeControl
-  | DateRunTimeControl
-  | TimeRunTimeControl
+  | DateRuntimeControl
+  | TimeRuntimeControl
   | CheckGroupRuntimeControl
   | RadioGroupRuntimeControl;
 

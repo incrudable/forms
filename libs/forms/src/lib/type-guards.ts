@@ -1,17 +1,17 @@
 import {
   CheckGroupRuntimeControl,
   ControlType,
-  DateRunTimeControl,
-  InputRunTimeControl,
+  DateRuntimeControl,
+  InputRuntimeControl,
   RadioGroupRuntimeControl,
   RuntimeControl,
   SelectRuntimeControl,
-  TimeRunTimeControl
+  TimeRuntimeControl
 } from './engine.types';
 
 export function isInputRuntimeControl(
   runtimeControl?: RuntimeControl
-): runtimeControl is InputRunTimeControl {
+): runtimeControl is InputRuntimeControl {
   return (
     !!runtimeControl &&
     runtimeControl.type === ControlType.input &&
@@ -31,7 +31,7 @@ export function isSelectRuntimeControl(
 
 export function isDateRuntimeControl(
   runtimeControl?: RuntimeControl
-): runtimeControl is DateRunTimeControl {
+): runtimeControl is DateRuntimeControl {
   return (
     !!runtimeControl &&
     runtimeControl.type === ControlType.date &&
@@ -41,7 +41,7 @@ export function isDateRuntimeControl(
 
 export function isTimeRuntimeControl(
   runtimeControl?: RuntimeControl
-): runtimeControl is TimeRunTimeControl {
+): runtimeControl is TimeRuntimeControl {
   return (
     !!runtimeControl &&
     runtimeControl.type === ControlType.time &&

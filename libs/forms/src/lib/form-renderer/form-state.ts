@@ -388,7 +388,7 @@ function buildControl(control: RuntimeControl): AbstractControl {
 }
 
 /**
- * Custom RxJS operator that returns back a modified RunTimeControl
+ * Custom RxJS operator that returns back a modified RuntimeControl
  * based on the Option[] data flowing through the source observable
  *
  * @param control control to set typeOptions on
