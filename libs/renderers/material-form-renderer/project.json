@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/renderers/material-form-renderer",
   "sourceRoot": "libs/renderers/material-form-renderer/src",
   "prefix": "incrudable",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/renderers/material-form-renderer"],
       "options": {
-        "jestConfig": "libs/renderers/material-form-renderer/jest.config.js",
+        "jestConfig": "libs/renderers/material-form-renderer/jest.config.ts",
         "passWithNoTests": true
       }
     },

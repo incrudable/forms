@@ -1,6 +1,5 @@
 {
   "projectType": "application",
-  "root": "apps/demo",
   "sourceRoot": "apps/demo/src",
   "prefix": "incrudable",
   "targets": {
@@ -87,7 +86,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/demo"],
       "options": {
-        "jestConfig": "apps/demo/jest.config.js",
+        "jestConfig": "apps/demo/jest.config.ts",
         "passWithNoTests": true
       }
     }

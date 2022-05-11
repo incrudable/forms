@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/rest",
   "sourceRoot": "libs/rest/src",
   "prefix": "incrudable",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/rest"],
       "options": {
-        "jestConfig": "libs/rest/jest.config.js",
+        "jestConfig": "libs/rest/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/material-deps",
   "sourceRoot": "libs/material-deps/src",
   "prefix": "incrudable",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/material-deps"],
       "options": {
-        "jestConfig": "libs/material-deps/jest.config.js",
+        "jestConfig": "libs/material-deps/jest.config.ts",
         "passWithNoTests": true
       }
     },
