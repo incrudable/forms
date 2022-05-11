@@ -314,7 +314,7 @@ Each control component must accept two inputs
 - formControl - an Angular FormControl that is generated from the control definition
 
 It is up to you to choose how the control should be rendered and connected to the form control. You can see an example of how the material
-renderer connects these controls [here](https://github.com/incrudable/forms/tree/master/libs/renderers/material-renderer/src/lib/control-previews/input-preview)
+renderer connects these controls [here](https://github.com/incrudable/forms/tree/master/libs/renderers/material-form-renderer/src/lib/control-previews/input-preview)
 
 Once you have each of your controls built, they need to be registered.
 To do this, create a module. The following shows how the material renderer registers its controls.
@@ -560,6 +560,13 @@ Interactions are part of the Control definition that describes how a
 user's interaction with a control affect a change in another control
 
 Interactions are still a work in progress
+
+## More Examples
+
+More examples can be found in the repository under 
+[/apps/demo application](https://github.com/incrudable/forms/tree/master/apps/demo/src/app)
+. Additionally, an additional minimal example can be found [here](https://github.com/dpsthree/demo-form).
+This example is used as a sanity check that they deployed bundles are valid.
 
 ## About the Author
 
